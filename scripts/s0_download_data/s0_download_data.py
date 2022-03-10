@@ -1,3 +1,5 @@
+# %%
+
 import json
 
 # adds scripts/ and src/ folder: so you can import scripts/functions across project steps
@@ -26,3 +28,7 @@ downloaded_list_of_books = [
 # write some data to a file
 with open(s0_balzac_books, "w") as f:
     json.dump(downloaded_list_of_books, f)
+
+# %%
+
+print("hello zorld")
