@@ -1,4 +1,4 @@
-# Data Project Basis
+# Sommarioni data extraction
 
 This repo is intended as a sound basis for a python data project.
 The goals are:
