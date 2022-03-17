@@ -13,6 +13,8 @@ figures_folder = j(relative_path_to_root, "report", "figures")
 
 s0_folder = j(data_folder, "s0_list_of_terms")
 s0_raw_sommarioni = j(s0_folder, "sommarioni.json")
+s0_list_of_terms = j(s0_folder, "listOfTerms.json")
+s0_list_of_tronques = j(s0_folder, "listOfTronques.json")
 
 
 
