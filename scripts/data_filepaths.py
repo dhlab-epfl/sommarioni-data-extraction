@@ -15,7 +15,8 @@ s0_folder = j(data_folder, "s0_list_of_terms")
 s0_raw_sommarioni = j(s0_folder, "sommarioni.json")
 s0_list_of_terms = j(s0_folder, "listOfTerms.json")
 s0_list_of_tronques = j(s0_folder, "listOfTronques.json")
-
+s0_terms_only = j(s0_folder, "termsOnly.json")
+s0_tronquesRaw = j(s0_folder, "tronquesRaw.json")
 
 
 

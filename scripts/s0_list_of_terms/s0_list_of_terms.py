@@ -2,6 +2,7 @@
 
 import json
 import re
+import spacy
 
 import pandas
 #pandas._version_
@@ -15,6 +16,8 @@ sys.path.append("../../scripts")
 from data_filepaths import s0_raw_sommarioni
 from data_filepaths import s0_list_of_terms
 from data_filepaths import s0_list_of_tronques
+from data_filepaths import s0_tronquesRaw
+#from data_filepaths import s0_terms_only
 #print(s0_raw_sommarioni)
 
 # %%
@@ -25,7 +28,7 @@ parcelOwnerTexts = [line['parcelOwnerText'] for line in sommarioni]
 
 length = len(parcelOwnerTexts)
 
-
+"""
 splited = []
 for i in range(length):
     if (parcelOwnerTexts[i] is not None):
@@ -47,28 +50,37 @@ print(counted1)
 counted1_json = json.dumps(counted1)
 with open(s0_list_of_terms, "w") as w:
     w.write(counted1_json)
-
+"""
 
 # %%
-"""
+
 tronqued = []
 for i in range(length):
     if (parcelOwnerTexts[i] is not None):
     #splited[i] = parcelOwnerTexts[i].split(" ")
         #word = parcelOwnerTexts[i].replace("[",'').replace("]",'').replace("Suddetti",'').replace("Suddetto",'').replace(" ",'')
-        word = re.sub("\[|\]|,|'|\s+$|(s|S)uddett(a|o|i)","", parcelOwnerTexts[i])
+        word = re.sub("\[|\]|,| +$| +^|(s|S)(u|U)ddett(e|a|o|i) *","", parcelOwnerTexts[i])
         tronqued.append(word)
+
+print(tronqued)
+tronquesRaw_json = json.dumps(tronqued)
+with open(s0_tronquesRaw, "w") as w:
+    w.write(tronquesRaw_json)
 
 
 nameset_2 = set(tronqued)
+
 counted2 =[(tronqued.count(name),name) for name in nameset_2]
 counted2.sort()
 #sorted2 = sorted(counted2)
-print(counted2)
+
+
+#print(counted2)
+
 
 counted2_json = json.dumps(counted2)
 with open(s0_list_of_tronques, "w") as w:
     w.write(counted2_json)
-"""
+
 
 # %%
