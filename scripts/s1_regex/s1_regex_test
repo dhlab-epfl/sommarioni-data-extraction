@@ -22,10 +22,55 @@ from data_filepaths import s0_list_of_tronques
 #from data_filepaths import s0_terms_only
 
 # %%
+def from_countedTronqued_listByTypes(ListOfTronqued):
+    Length = len(ListOfTronqued)
+
+    Other = []
+    Venezia = []
+    Demanio = []
+    Chiesa = []
+    Congregazione = []
+    NameSolo = []
+    NameEFratello = []
+    NameQuondam = []
+    NameFlou = []
+    Irrelevant = []
+    
+    for i in range(Length):
+        Word = ListOfTronqued[i][1]
+        if re.search("(citt..|comm?une) di venezia", Word, re.IGNORECASE) is not None:
+            Venezia.append(ListOfTronqued[i])
+        elif re.search("(regio )?deman(i|e)o|ministe?ro|reale corona|tesoro|^ufficio del censo", Word, re.IGNORECASE) is not None:
+            Demanio.append(ListOfTronqued[i])
+        elif re.search("chiesa|monastero|benefi(c|z)io|^capitolo|^prebenda", Word, re.IGNORECASE): #capitolo,prebende, beneficio
+            Chiesa.append(ListOfTronqued[i])
+        elif re.search("congregazione", Word, re.IGNORECASE):
+            Congregazione.append(ListOfTronqued[i])
+        elif re.search("^(eredi del fu )?([a-z]|'|Ã²|ò)+ ?(([a-z]|Ã²|ò)+ )?(di )?([a-z]|Ã²|ò)+ *$", Word, re.IGNORECASE):
+            NameSolo.append(ListOfTronqued[i])
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (\.)+)?)+$",Word,re.IGNORECASE):
+            NameQuondam.append(ListOfTronqued[i])
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²ò)+)?( ed? ([a-z]|'|Ã²ò)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²ò)+( di)?( ([a-z]|'|Ã²ò)+)?)*( indivisi)?$", Word, re.IGNORECASE):
+            NameEFratello.append(ListOfTronqued[i])     #e avec un point d'interrogation
+        elif re.search("sic|\.{4,15}", Word, re.IGNORECASE):
+            NameFlou.append(ListOfTronqued[i])
+        elif re.search("^(|-|N\.)$|^possessore ignoto", Word, re.IGNORECASE):
+            Irrelevant.append(ListOfTronqued[i])
+        else:
+            Other.append(ListOfTronqued[i])
+
+        Result = [("NomSeul", NameSolo),("NomEtQuondam",NameQuondam),("NomAvecFamille",NameEFratello)]        
+    
+    return Result
+
+
+# %%
 with open(s0_list_of_tronques,) as f:
     listDeBase = json.load(f)
 
 length = len(listDeBase) #vaut 11624 au total
+
+#faire une fonction qui prend en entrée 
 
 other = []
 othSum = 0
@@ -53,10 +98,10 @@ nomEnRegex = "([a-z]|')+ [a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?"
 
 for i in range(length):
     word = listDeBase[i][1]
-    if re.search("(citt..|comm?une) di venezia", word, re.IGNORECASE) is not None:
+    if re.search("(citt..|comm?une) di venezia|cimiterio|^patriarcato di venezia", word, re.IGNORECASE) is not None:
         venezia.append(listDeBase[i])
         venSum += listDeBase[i][0]
-    elif re.search("(regio )?demanio|ministe?ro|reale corona|tesoro", word, re.IGNORECASE) is not None:
+    elif re.search("(regio )?deman(i|e)o|ministe?ro|reale corona|tesoro", word, re.IGNORECASE) is not None:
         demanio.append(listDeBase[i])
         demSum += listDeBase[i][0]
     elif re.search("chiesa|monastero|benefi(c|z)io|^capitolo|^prebenda", word, re.IGNORECASE): #capitolo,prebende, beneficio
@@ -65,13 +110,13 @@ for i in range(length):
     elif re.search("congregazione", word, re.IGNORECASE):
         congregazione.append(listDeBase[i])
         conSum += listDeBase[i][0]
-    elif re.search("^(eredi del fu )?([a-z]|'|Ã²)+ ?(([a-z]|Ã²)+ )?(di )?([a-z]|Ã²)+ *$", word, re.IGNORECASE):
+    elif re.search("^(eredi del fu )?([a-z]|'|Ã²|ò)+ ?(([a-z]|Ã²|ò)+ )?(di )?([a-z]|Ã²|ò)+ *$", word, re.IGNORECASE):
         nameSolo.append(listDeBase[i])
         solSum += listDeBase[i][0]
-    elif re.search("^([a-z]|'|Ã²)+( ([a-z]|'|Ã²)+)?( di)?( ([a-z]|'|Ã²)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²)+)?( di)?( ([a-z]|'|Ã²)+)?( (\.)+)?)+$",word,re.IGNORECASE):
+    elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (\.)+)?)+$",word,re.IGNORECASE):
         nameQuondam.append(listDeBase[i])
         quoSum += listDeBase[i][0]
-    elif re.search("^([a-z]|')+( ([a-z]|'|Ã²)+)?( di)?( ([a-z]|'|Ã²)+)?( ed? ([a-z]|'|Ã²)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²)+( di)?( ([a-z]|'|Ã²)+)?)*( indivisi)?$", word, re.IGNORECASE):
+    elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²ò)+)?( ed? ([a-z]|'|Ã²ò)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²ò)+( di)?( ([a-z]|'|Ã²ò)+)?)*( indivisi)?$", word, re.IGNORECASE):
         nameEFratello.append(listDeBase[i])     #e avec un point d'interrogation
         fraSum += listDeBase[i][0]
     elif re.search("sic|\.{4,15}", word, re.IGNORECASE):
@@ -89,7 +134,7 @@ for i in range(length):
 "( (ed?|q\.m?\.?|quondam) ([a-z]|')+ ?[a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?)*"
 
 #%%
-#print(other)
+print(nameSolo)
 
 #%%
 print("Venise : noms = ",len(venezia), " parcelles = ", venSum,
@@ -99,7 +144,7 @@ print("Venise : noms = ",len(venezia), " parcelles = ", venSum,
     "\nNomSeul : noms = ", len(nameSolo), " parcelles = ", solSum,
     "\nE fratellio : noms = ", len(nameEFratello), "parcelles = ", fraSum,
     "\nseul avec Quondam = ", len(nameQuondam), " parcelles = ", quoSum,
-    "\neredi del fu = ", len(nameFlou), "parcelles = ", nameFlouSum,
+    "\nnom flou = ", len(nameFlou), "parcelles = ", nameFlouSum,
     "\nirrelevant = ", len(irrelevant), "parcelles = ", irrSum,
     "\nAutres : noms = ", len(other), " parcelles = ", othSum,
     "\nTotaux : noms = ", length, "parcelles = 22691") 
@@ -121,7 +166,7 @@ opacity = 0.8
 rects1 = plt.bar(index, nb_noms, bar_width,
 alpha=opacity,
 color='b',
-label='nombre de foix où le mot apparait')
+label='nombre d\'entrée  avec des noms différents')
 
 rects2 = plt.bar(index + bar_width, nb_parcelles, bar_width,
 alpha=opacity,
@@ -130,9 +175,9 @@ label='nombre de parcelles')
 
 plt.xlabel('type de propriétaire')
 plt.ylabel('nombre')
-plt.title('répartition des noms par type')
-plt.xticks(index + bar_width, ('ven', 'dem', 'chi', 'cong','nomS', 'nomF',
-    'nomQ','sic..','irr', 'autres' ))
+plt.title('répartition des propriétaires par type')
+plt.xticks(index + bar_width, ('venezia', 'demanio', 'chiesa', 'congreg.','nom seul', 'famille',
+    'quondam','sic','non pertinent', 'autres' ), rotation=40)
 plt.legend()
 
 plt.tight_layout()
