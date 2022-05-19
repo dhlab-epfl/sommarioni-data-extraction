@@ -62,7 +62,47 @@ def from_countedTronqued_listByTypes(ListOfTronqued):
         Result = [("NomSeul", NameSolo),("NomEtQuondam",NameQuondam),("NomAvecFamille",NameEFratello)]        
     
     return Result
+def from_countedplusnumber_to_listBytype(ListofTronquedplusnumber):
+    Length = len(ListofTronquedplusnumber[0])
 
+    Other = []
+    Venezia = []
+    Demanio = []
+    Chiesa = []
+    Congregazione = []
+    NameSolo = []
+    NameEFratello = []
+    NameQuondam = []
+    NameFlou = []
+    Irrelevant = []
+    
+    for i in range(Length):
+        Word = ListofTronquedplusnumber[0][i]
+        if re.search("(citt..|comm?une) di venezia", Word, re.IGNORECASE) is not None:
+            Venezia.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("(regio )?deman(i|e)o|ministe?ro|reale corona|tesoro|^ufficio del censo", Word, re.IGNORECASE) is not None:
+            Demanio.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("chiesa|monastero|benefi(c|z)io|^capitolo|^prebenda", Word, re.IGNORECASE): #capitolo,prebende, beneficio
+            Chiesa.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("congregazione", Word, re.IGNORECASE):
+            Congregazione.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("^(eredi del fu )?([a-z]|'|Ã²|ò)+ ?(([a-z]|'|Ã²|ò)+ )?(di )?([a-z]|'|Ã²|ò)+ *$", Word, re.IGNORECASE):
+            NameSolo.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (\.)+)?)+$",Word,re.IGNORECASE):
+            NameQuondam.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²ò)+)?( ed? ([a-z]|'|Ã²ò)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²ò)+( di)?( ([a-z]|'|Ã²ò)+)?)*( indivisi)?$", Word, re.IGNORECASE):
+            NameEFratello.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))     #e avec un point d'interrogation
+        elif re.search("sic|\.{4,15}", Word, re.IGNORECASE):
+            NameFlou.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        elif re.search("^(|-|N\.)$|^possessore ignoto", Word, re.IGNORECASE):
+            Irrelevant.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+        else:
+            Other.append((ListofTronquedplusnumber[0][i],ListofTronquedplusnumber[1][i]))
+
+        Result = [("NomSeul", NameSolo),("NomEtQuondam",NameQuondam),("NomAvecFamille",NameEFratello),("NomDesEglises",Chiesa),
+            ("Venezia", Venezia),("Demanio",Demanio),("other",Other)]        
+    
+    return Result 
 
 # %%
 with open(s0_list_of_tronques,) as f:

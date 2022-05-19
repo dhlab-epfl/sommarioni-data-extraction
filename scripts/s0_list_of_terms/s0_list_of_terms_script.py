@@ -44,7 +44,24 @@ def from_sommarioni_to_countedTronqued(Sommarioni):
     Counted = [(Tronqued.count(Name),Name) for Name in Nameset_2]
     Counted.sort()
     return Counted
+# %%
+def from_sommarioni_to_Tronqued_plus_parcelNumber(Sommarioni):
+    ParcelOwnerTexts = [line['parcelOwnerText'] for line in Sommarioni]
 
+    Length = len(ParcelOwnerTexts)
+
+    Result = [[],[]]
+    for i in range(Length):
+        if (ParcelOwnerTexts[i] is not None):
+            Word = re.sub("\[|\]|,| +$|^ +| ?(s|S)(u|U)ddett(e|a|o|i)| *$","", ParcelOwnerTexts[i])
+            if Word in Result[0]:
+                index = Result[0].index(Word)
+                Result[1][index].append(i)
+            else :
+                Result[0].append(Word)
+                Result[1].append([i])
+    
+    return Result
 
 # %%
 with open(s0_raw_sommarioni,) as f:
@@ -53,6 +70,8 @@ with open(s0_raw_sommarioni,) as f:
 parcelOwnerTexts = [line['parcelOwnerText'] for line in sommarioni]
 #print(parcelOwnerTexts)
 length = len(parcelOwnerTexts)
+
+from_sommarioni_to_Tronqued_plus_parcelNumber(parcelOwnerTexts)
 
 #%%
 """
