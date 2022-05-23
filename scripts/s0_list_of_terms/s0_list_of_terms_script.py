@@ -64,7 +64,7 @@ def from_sommarioni_to_Tronqued_plus_parcelNumber(Sommarioni):
     return Result
 
 # %%
-with open(s0_raw_sommarioni,) as f:
+with open(s0_raw_sommarioni,encoding="utf-8") as f:
     sommarioni = json.load(f)
 
 parcelOwnerTexts = [line['parcelOwnerText'] for line in sommarioni]

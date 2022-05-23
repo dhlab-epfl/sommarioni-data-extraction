@@ -1,0 +1,67 @@
+#%%
+import json
+
+
+
+import sys
+sys.path.append("../../src")
+sys.path.append("../../scripts")
+
+#from data_filepaths import s2_setPrenoms
+from data_filepaths import s2_setFamilles
+
+
+listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
+    'Agostino','Agnese','Alberto',
+    'Alessandro','Allessandro',
+    'Almorò','Alvise','alteniero','Ambrogio',
+    'Andrea','Andreina','Andriana','andrianna','angeglo','Angela','Angelo',
+    'Anna','Anselmo','Antonia','Antonio','Apolonio','apollonio','Ascanio','Aurelio','Baldassare',
+    'Bartolomeo','Basilio','Battista','Benedeto','Benedetto','benetto','bernardin',
+    'Bernardino','Bernardo','Bertolo','Bertucci','Bertazzi','Bertuzzi','Benizio',
+    'Biaggio','Bianca','Bortolameo',
+    'Bortolo','bartolameo','Bortolomeo','Bortolomio','bartolamio','Camilla','Camillo',
+    'Carlo','Cattarin','Caterina','Catterina','Cecilia','Cesare',
+    'Chiara','claudio','Contarina','Coriolano','Cornelia','Costantin',
+    'Costantino','cristina','Cristoforo','Daniel','Daniele','David','Davide',
+    'Domenica','Domenico','eleonora','Elena',
+    'Elisabetta','Elisabeta','Elisazio','Ellena','emanuele',
+    'Emanuel','Enrico','fabbio','Fabio','Faustino',
+    'Federico','Federigo','Felice','Ferdinando','Filippo',
+    'Flaminio','Fortunato','Francesca',
+    'Francesco','franco','Gabriel','Gabriele','Gabriella','Gaetano','Gaspare','Gasparo','Gerolamo',
+    'Giacinto','Giacomo','Gio.Batta','Gioachino',
+    'Giorgio','Giovanna','Giovanni','GIrolamo','Girolamo','Giulia','Giulio',
+    'Giuseppe','Giuiseppe','Giustina','Giustiniana','Giusto','Ignazio','Illustrissimo','Isabella','Laura','Lauro',
+    'Lazaro','Laonardo','Leonardo','Leone','Lin','Livio',
+    'Lodovica','Lodovico','Loredana',
+    'Lorenzo','Luca','Lucca','lucio','Lucia','Lugrezia','Luigi',
+    'Maddalena','Madalena','marcella','Marcello','Marianna','MarcAntonio','marc\'antonio',
+    'Marco','Maria','Mariana','marietta','Mario','Marin','Marina','Marino',
+    'Margarita','Margherita','Marta','Matteo','Mattio','Michiel','michiele',
+    'Michele','Michielle','morella','natalino','Nicoleto','nicoletto',
+    'Niccolò','Nicolò','olivo','Onorio','Orsola','Ottaviano','Ottavio',
+    'Orazio','Osvaldo','Paolina','Paolo','Pasin','Pasquale','Pasqualino',
+    'Paulo','perina','piero','Pietro','Pisana','Polisena','Polissena','Raffaele',
+    'Regina','Rinaldo','Rizzardo','Roberto','Rocco','romana',
+    'Rosa','sadia','Salamone','Salomon','Salomone','Salvador','salvatore','Samuele','Santo','Sebastian',
+    'Sebastiano','Serafina','Silvestro','Simeone','Simon','Simone',
+    'Soranzo','Stanislao','Stefano','Steffano','Teodoro',
+    'Teresa','Tomaso','Tommaso','Valentin','Valentino','Vettor',
+    'Vettore','Vido','Vincenza','Vincenzo','Vita','Vitale','Vittoria','vitore',
+    'Vittore','Vivante','Zaccaria','Zuanne','gianfrancesco',
+    'reniero','carolina','demetrio','speridion','spiridion','spiridione','capello',
+    'sabbato','leonara','lunardo','lavia','zanchi']
+#primo ??? moisè Raffaele(surtout pour l'ange, 2-3 fois prenom) soranzo ?(bcp + souvent nom)
+#lin?? Marcello??
+#gio batta
+#agostin = agostino ? renier bernardin = bernardino (1 seul fois)
+#GIrolamo => essayer de réunir avec Girolamo
+#attention Santo
+listDePrenomsLower = [x.lower() for x in listDePrenoms]
+setPrenoms = sorted(set(listDePrenomsLower))
+
+#%%
+with open(s2_setPrenoms, "w") as f:
+    json.dump(s2_setPrenoms, setPrenoms)
+# %%

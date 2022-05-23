@@ -19,6 +19,10 @@ s0_list_of_tronques = j(s0_folder, "listOfTronques.json")
 s0_terms_only = j(s0_folder, "termsOnly.json")
 s0_tronquesRaw = j(s0_folder, "tronquesRaw.json")
 
+s2_folder = j(data_folder, "s2_list_de_proprietaires")
+s2_setPrenoms = j(s2_folder,"setPrenoms.json")
+s2_setFamilles = j(s2_folder,"setFamilles.json")
+
 s0_scriptsDos = j(scripts_folder, "s0_list_of_terms")
 s0_scripts = j(s0_scriptsDos, "s0_list_of_terms.py")
 
