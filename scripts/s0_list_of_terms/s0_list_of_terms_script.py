@@ -63,72 +63,32 @@ def from_sommarioni_to_Tronqued_plus_parcelNumber(Sommarioni):
     
     return Result
 
-# %%
-with open(s0_raw_sommarioni,encoding="utf-8") as f:
-    sommarioni = json.load(f)
-
-parcelOwnerTexts = [line['parcelOwnerText'] for line in sommarioni]
-#print(parcelOwnerTexts)
-length = len(parcelOwnerTexts)
-
-from_sommarioni_to_Tronqued_plus_parcelNumber(parcelOwnerTexts)
-
 #%%
-"""
-splited = []
-for i in range(length):
-    if (parcelOwnerTexts[i] is not None):
-        #for word in parcelOwnerTexts[i].replace("[",'').replace("]",'').replace(",",'').split(" "):
-        wordsubbed = re.sub("\[|\]|,|'|\s+$","", parcelOwnerTexts[i])
-        Word2 = re.sub("\u00c3","à",wordsubbed)
-        Word3 = re.sub("\u00c3\u00b2","ò",Word2)
-        Word4 = re.sub("\u00c3\u2030","é",Word3)
-        Word5 = re.sub("\u00c3\u00a8","è",Word4)
-        for word in re.split("\s",Word5):
-        #print(wordsplited)
-            splited.append(word)
+def from_somamarioni_to_list_of_terms(Sommarioni):
+    parcelOwnerTexts = [line['parcelOwnerText'] for line in Sommarioni]
 
-print(splited)
-nameset = set(splited)
+    length = len(parcelOwnerTexts)
 
-#counted={name:splited.count(name) for name in nameset}
-counted1=[(splited.count(name),name) for name in nameset]
-#sorted1 = sorted(counted1)
-counted1.sort()
-print(counted1)
+    splited = []
+    for i in range(length):
+        if (parcelOwnerTexts[i] is not None):
+            #for word in parcelOwnerTexts[i].replace("[",'').replace("]",'').replace(",",'').split(" "):
+            wordsubbed = re.sub("\[|\]|,|'|\s+$","", parcelOwnerTexts[i])
+            Word2 = re.sub("\u00c3","à",wordsubbed)
+            Word3 = re.sub("\u00c3\u00b2","ò",Word2)
+            Word4 = re.sub("\u00c3\u2030","é",Word3)
+            Word5 = re.sub("\u00c3\u00a8","è",Word4)
+            for word in re.split("\s",Word5):
+            #print(wordsplited)
+                splited.append(word)
 
-counted1_json = json.dumps(counted1)
-with open(s0_list_of_terms, "w") as w:
-    w.write(counted1_json)
-"""
+            #print(splited)
+    nameset = set(splited)
 
-# %%
-
-tronqued = []
-for i in range(length):
-    if (parcelOwnerTexts[i] is not None):
-    #splited[i] = parcelOwnerTexts[i].split(" ")
-        #word = parcelOwnerTexts[i].replace("[",'').replace("]",'').replace("Suddetti",'').replace("Suddetto",'').replace(" ",'')
-        #!!!!!!!!!!!!!!!!!attention suddetto des fois seul, à changer
-        word = re.sub("\[|\]|,| +$| +^|(s|S)(u|U)ddett?(e|a|o|i) *","", parcelOwnerTexts[i])
-        word2 = re.sub("\u00e0","à",word)
-        word3 = re.sub("\u00f2","ò",word2)
-        word4 = re.sub("\u00e8","è",word3)
-        tronqued.append(word4)
-
-nameset_2 = set(tronqued)
-
-counted2 =[(tronqued.count(name),name) for name in nameset_2]
-counted2.sort()
-#sorted2 = sorted(counted2)
-
-
-print(counted2)
-
-
-counted2_json = json.dumps(counted2)
-with open(s0_list_of_tronques, "w") as w:
-    w.write(counted2_json)
-
+    #counted={name:splited.count(name) for name in nameset}
+    counted1=[(splited.count(name),name) for name in nameset]
+    #sorted1 = sorted(counted1)
+    counted1.sort()
+    return counted1
 
 # %%

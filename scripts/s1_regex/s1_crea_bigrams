@@ -1,0 +1,24 @@
+#%%
+import json
+import re
+import nltk
+
+import sys
+sys.path.append("../../src")
+sys.path.append("../../scripts")
+#sys.path.append("../../scripts/s1_regex")
+
+from data_filepaths import s0_raw_sommarioni
+from data_filepaths import s1_bigrams
+
+#%%
+with open(s0_raw_sommarioni,encoding="utf-8") as f:
+    sommarioni = json.load(f)
+
+bigrams = from_sommarioni_to_bigrams(sommarioni)
+
+birgrams_json = json.dumps(bigrams)
+
+with open(s1_bigrams, "w") as w:
+    w.write(birgrams_json)
+# %%

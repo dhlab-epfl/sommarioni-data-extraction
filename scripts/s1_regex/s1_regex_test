@@ -62,6 +62,7 @@ def from_countedTronqued_listByTypes(ListOfTronqued):
         Result = [("NomSeul", NameSolo),("NomEtQuondam",NameQuondam),("NomAvecFamille",NameEFratello)]        
     
     return Result
+    
 def from_countedplusnumber_to_listBytype(ListofTronquedplusnumber):
     Length = len(ListofTronquedplusnumber[0])
 
@@ -106,120 +107,115 @@ def from_countedplusnumber_to_listBytype(ListofTronquedplusnumber):
 
 # %%
 with open(s0_list_of_tronques,) as f:
-    listDeBase = json.load(f)
+ countedTronqued = json.load(f)
 
-length = len(listDeBase) #vaut 11624 au total
+def from_countedTronqued_to_print(countedTronqued):
 
-#faire une fonction qui prend en entrée 
+    length = len(countedTronqued) #vaut 11624 au total
 
-other = []
-othSum = 0
-venezia = []
-venSum = 0
-demanio = []
-demSum = 0
-chiesa = []
-chiSum = 0
-congregazione = []
-conSum = 0
-name = []
-nameSolo = []
-solSum = 0
-nameEFratello = []
-fraSum = 0
-nameQuondam = []
-quoSum = 0
-nameFlou = []
-nameFlouSum = 0
-irrelevant = []
-irrSum = 0
+    other = []
+    othSum = 0
+    venezia = []
+    venSum = 0
+    demanio = []
+    demSum = 0
+    chiesa = []
+    chiSum = 0
+    congregazione = []
+    conSum = 0
+    name = []
+    nameSolo = []
+    solSum = 0
+    nameEFratello = []
+    fraSum = 0
+    nameQuondam = []
+    quoSum = 0
+    nameFlou = []
+    nameFlouSum = 0
+    irrelevant = []
+    irrSum = 0
 
-nomEnRegex = "([a-z]|')+ [a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?"
+    nomEnRegex = "([a-z]|')+ [a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?"
 
-for i in range(length):
-    word = listDeBase[i][1]
-    if re.search("(citt..|comm?une) di venezia|cimiterio|^patriarcato di venezia", word, re.IGNORECASE) is not None:
-        venezia.append(listDeBase[i])
-        venSum += listDeBase[i][0]
-    elif re.search("(regio )?deman(i|e)o|ministe?ro|reale corona|tesoro", word, re.IGNORECASE) is not None:
-        demanio.append(listDeBase[i])
-        demSum += listDeBase[i][0]
-    elif re.search("chiesa|monastero|benefi(c|z)io|^capitolo|^prebenda", word, re.IGNORECASE): #capitolo,prebende, beneficio
-        chiesa.append(listDeBase[i])
-        chiSum += listDeBase[i][0]
-    elif re.search("congregazione", word, re.IGNORECASE):
-        congregazione.append(listDeBase[i])
-        conSum += listDeBase[i][0]
-    elif re.search("^(eredi del fu )?([a-z]|'|Ã²|ò)+ ?(([a-z]|Ã²|ò)+ )?(di )?([a-z]|Ã²|ò)+ *$", word, re.IGNORECASE):
-        nameSolo.append(listDeBase[i])
-        solSum += listDeBase[i][0]
-    elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (\.)+)?)+$",word,re.IGNORECASE):
-        nameQuondam.append(listDeBase[i])
-        quoSum += listDeBase[i][0]
-    elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²ò)+)?( ed? ([a-z]|'|Ã²ò)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²ò)+( di)?( ([a-z]|'|Ã²ò)+)?)*( indivisi)?$", word, re.IGNORECASE):
-        nameEFratello.append(listDeBase[i])     #e avec un point d'interrogation
-        fraSum += listDeBase[i][0]
-    elif re.search("sic|\.{4,15}", word, re.IGNORECASE):
-        nameFlou.append(listDeBase[i])
-        nameFlouSum += listDeBase[i][0]
-    elif re.search("^(|-|N\.)$", word, re.IGNORECASE):
-        irrelevant.append(listDeBase[i])
-        irrSum += listDeBase[i][0]
-    else:
-        other.append(listDeBase[i])
-        othSum += listDeBase[i][0]
+    for i in range(length):
+        word = countedTronqued[i][1]
+        if re.search("(citt..|comm?une) di venezia|cimiterio|^patriarcato di venezia", word, re.IGNORECASE) is not None:
+            venezia.append(countedTronqued[i])
+            venSum += countedTronqued[i][0]
+        elif re.search("(regio )?deman(i|e)o|ministe?ro|reale corona|tesoro", word, re.IGNORECASE) is not None:
+            demanio.append(countedTronqued[i])
+            demSum += countedTronqued[i][0]
+        elif re.search("chiesa|monastero|benefi(c|z)io|^capitolo|^prebenda", word, re.IGNORECASE): #capitolo,prebende, beneficio
+            chiesa.append(countedTronqued[i])
+            chiSum += countedTronqued[i][0]
+        elif re.search("congregazione", word, re.IGNORECASE):
+            congregazione.append(countedTronqued[i])
+            conSum += countedTronqued[i][0]
+        elif re.search("^(eredi del fu )?([a-z]|'|Ã²|ò)+ ?(([a-z]|Ã²|ò)+ )?(di )?([a-z]|Ã²|ò)+ *$", word, re.IGNORECASE):
+            nameSolo.append(countedTronqued[i])
+            solSum += countedTronqued[i][0]
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (q\.m?\.?|quondam|vedova( di)?)( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²|ò)+)?( (\.)+)?)+$",word,re.IGNORECASE):
+            nameQuondam.append(countedTronqued[i])
+            quoSum += countedTronqued[i][0]
+        elif re.search("^([a-z]|'|Ã²|ò)+( ([a-z]|'|Ã²|ò)+)?( di)?( ([a-z]|'|Ã²ò)+)?( ed? ([a-z]|'|Ã²ò)+)?(( e)? (fratell(i|o)|sorelle))?(( (q\.m?\.?)| (quondam)| (vedova( di)?)) ([a-z]|'|Ã²ò)+( di)?( ([a-z]|'|Ã²ò)+)?)*( indivisi)?$", word, re.IGNORECASE):
+            nameEFratello.append(countedTronqued[i])     #e avec un point d'interrogation
+            fraSum += countedTronqued[i][0]
+        elif re.search("sic|\.{4,15}", word, re.IGNORECASE):
+            nameFlou.append(countedTronqued[i])
+            nameFlouSum += countedTronqued[i][0]
+        elif re.search("^(|-|N\.)$", word, re.IGNORECASE):
+            irrelevant.append(countedTronqued[i])
+            irrSum += countedTronqued[i][0]
+        else:
+            other.append(countedTronqued[i])
+            othSum += countedTronqued[i][0]
 
 "eredi del fu"
 "^([a-z]|')+ ([a-z])+$"
 "( (ed?|q\.m?\.?|quondam) ([a-z]|')+ ?[a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?)*"
 
-#%%
-print(nameSolo)
-
-#%%
-print("Venise : noms = ",len(venezia), " parcelles = ", venSum,
-    "\nDemanio : noms = ", len(demanio), " parcelles = ", demSum,
-    "\nchiesa : noms = ", len(chiesa), " parcelles = ", chiSum,
-    "\nCongregazione : noms = ", len(congregazione), " parcelles = ", conSum,
-    "\nNomSeul : noms = ", len(nameSolo), " parcelles = ", solSum,
-    "\nE fratellio : noms = ", len(nameEFratello), "parcelles = ", fraSum,
-    "\nseul avec Quondam = ", len(nameQuondam), " parcelles = ", quoSum,
-    "\nnom flou = ", len(nameFlou), "parcelles = ", nameFlouSum,
-    "\nirrelevant = ", len(irrelevant), "parcelles = ", irrSum,
-    "\nAutres : noms = ", len(other), " parcelles = ", othSum,
-    "\nTotaux : noms = ", length, "parcelles = 22691") 
-len(other)
+    print("Venise : noms = ",len(venezia), " parcelles = ", venSum,
+        "\nDemanio : noms = ", len(demanio), " parcelles = ", demSum,
+        "\nchiesa : noms = ", len(chiesa), " parcelles = ", chiSum,
+        "\nCongregazione : noms = ", len(congregazione), " parcelles = ", conSum,
+        "\nNomSeul : noms = ", len(nameSolo), " parcelles = ", solSum,
+        "\nE fratellio : noms = ", len(nameEFratello), "parcelles = ", fraSum,
+        "\nseul avec Quondam = ", len(nameQuondam), " parcelles = ", quoSum,
+        "\nnom flou = ", len(nameFlou), "parcelles = ", nameFlouSum,
+        "\nirrelevant = ", len(irrelevant), "parcelles = ", irrSum,
+        "\nAutres : noms = ", len(other), " parcelles = ", othSum,
+        "\nTotaux : noms = ", length, "parcelles = 22691") 
+    len(other)
 
 
-# %%
-nb_noms = (len(venezia), len(demanio), len(chiesa), len(congregazione), len(nameSolo),
-    len(nameEFratello), len(nameQuondam), len(nameFlou), len(irrelevant), len(other))
-nb_parcelles = (venSum, demSum, chiSum, conSum, solSum, fraSum, quoSum, nameFlouSum, irrSum, othSum)
-nb_cat = len(nb_noms)
+    nb_noms = (len(venezia), len(demanio), len(chiesa), len(congregazione), len(nameSolo),
+        len(nameEFratello), len(nameQuondam), len(nameFlou), len(irrelevant), len(other))
+    nb_parcelles = (venSum, demSum, chiSum, conSum, solSum, fraSum, quoSum, nameFlouSum, irrSum, othSum)
+    nb_cat = len(nb_noms)
 
-# create plot
-fig, ax = plt.subplots()
-index = np.arange(nb_cat)
-bar_width = 0.35
-opacity = 0.8
+    # create plot
+    fig, ax = plt.subplots()
+    index = np.arange(nb_cat)
+    bar_width = 0.35
+    opacity = 0.8
 
-rects1 = plt.bar(index, nb_noms, bar_width,
-alpha=opacity,
-color='b',
-label='nombre d\'entrée  avec des noms différents')
+    rects1 = plt.bar(index, nb_noms, bar_width,
+    alpha=opacity,
+    color='b',
+    label='nombre d\'entrée  avec des noms différents')
 
-rects2 = plt.bar(index + bar_width, nb_parcelles, bar_width,
-alpha=opacity,
-color='g',
-label='nombre de parcelles')
+    rects2 = plt.bar(index + bar_width, nb_parcelles, bar_width,
+    alpha=opacity,
+    color='g',
+    label='nombre de parcelles')
 
-plt.xlabel('type de propriétaire')
-plt.ylabel('nombre')
-plt.title('répartition des propriétaires par type')
-plt.xticks(index + bar_width, ('venezia', 'demanio', 'chiesa', 'congreg.','nom seul', 'famille',
-    'quondam','sic','non pertinent', 'autres' ), rotation=40)
-plt.legend()
+    plt.xlabel('type de propriétaire')
+    plt.ylabel('nombre')
+    plt.title('répartition des propriétaires par type')
+    plt.xticks(index + bar_width, ('venezia', 'demanio', 'chiesa', 'congreg.','nom seul', 'famille',
+        'quondam','sic','non pertinent', 'autres' ), rotation=40)
+    plt.legend()
 
-plt.tight_layout()
-plt.show()
+    plt.tight_layout()
+    plt.show()
 # %%
