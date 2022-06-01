@@ -53,9 +53,10 @@ class Pretre:
         self.lien = []
 
 class Public:
-    def __init__(self,nom,parcelles):
+    def __init__(self,nom,parcelles,prov=None):
         self.nom = nom
         self.parcelles = parcelles
+        self.prov = prov
 
 class Parcelle:
     def __init__(self,number, owner):

@@ -17,7 +17,7 @@ from data_filepaths import s2_setFamilles
 
 #%%
 listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
-    'Agostino','Agnese','Alberto',
+    'Agostino','Agnese','Alberto','onofrio',
     'Alessandro','Allessandro',
     'Almorò','Alvise','alteniero','Ambrogio',
     'Andrea','Andreina','Andriana','andrianna','angeglo','Angela','Angelo',
@@ -39,7 +39,7 @@ listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
     'Giorgio','Giovanna','Giovanni','GIrolamo','Girolamo','Giulia','Giulio',
     'Giuseppe','Giuiseppe','Giustina','Giustiniana','Giusto','Ignazio','Illustrissimo','Isabella','Laura','Lauro',
     'Lazaro','Laonardo','Leonardo','Leone','Lin','Livio',
-    'Lodovica','Lodovico','Loredana',
+    'Lodovica','Lodovico','Loredana','silvano',
     'Lorenzo','Luca','Lucca','lucio','Lucia','Lugrezia','Luigi',
     'Maddalena','Madalena','marcella','Marcello','Marianna','MarcAntonio','marc\'antonio',
     'Marco','Maria','Mariana','marietta','Mario','Marin','Marina','Marino',
@@ -51,12 +51,12 @@ listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
     'Regina','Rinaldo','Rizzardo','Roberto','Rocco','romana',
     'Rosa','sadia','Salamone','Salomon','Salomone','Salvador','salvatore','Samuele','Santo','Sebastian',
     'Sebastiano','Serafina','Silvestro','Simeone','Simon','Simone',
-    'Soranzo','Stanislao','Stefano','Steffano','Teodoro',
+    'Soranzo','Stanislao','Stefano','Steffano','Teodoro','melchiore'
     'Teresa','Tomaso','Tommaso','Valentin','Valentino','Vettor',
     'Vettore','Vido','Vincenza','Vincenzo','Vita','Vitale','Vittoria','vitore',
     'Vittore','Vivante','Zaccaria','Zuanne','gianfrancesco',
     'reniero','carolina','demetrio','speridion','spiridion','spiridione','capello',
-    'sabbato','leonara','lunardo','lavia','zanchi']
+    'sabbato','leonara','lunardo','lavia','zanchi','michee','guido',]
 #primo ??? moisè Raffaele(surtout pour l'ange, 2-3 fois prenom) soranzo ?(bcp + souvent nom)
 #lin?? Marcello??
 #gio batta
@@ -111,9 +111,9 @@ listDeFamille = [
     'Griti', 'Guerra', 'Guidoni', 'LABIA', 'LIPOMANO', 'LISCHIUTA', 'LOREDAN',
     'LUCCATELLI', 'Loschi', 'Lucatello', 'Luzzato', 'MAFFEI', 'MAINARDI',
     'MANOLESSO', 'MARCONI', 'MARINI', 'MARTINENGO', 'MEMO', 'MICHELI', 'MOLIN',
-    'MORA', 'MORETTI', 'MOROSINI', 'MOROSINI', 'MOZENIGA', 'Magno', 'Malipiero',
+    'MORA', 'MORETTI', 'MOROSINI', 'MOZENIGA', 'Magno', 'Malipiero',
     'Manca', 'Manfrin', 'Marzan', 'Mazzuccato', 'Mensurati', 'Michieli', 'Minelli',
-    'Mocenigo', 'Mora', 'Morosini', 'NANI', 'Namias', 'Ottoboni', 'PERAZZO', 'PESARO',
+    'Mocenigo', 'Mora', 'NANI', 'Namias', 'Ottoboni', 'PERAZZO', 'PESARO',
     'PISANI', 'PORTO', 'PRIULI', 'Parenzo', 'Perlasca', 'Pizzamano', 'Poro',
     'RAZINI', 'RENIER', 'RIGONI', 'RIVA', 'Rampinetti', 'Renier', 'Rezzonico', 'Rizzi',
     'Rotta', 'Rubelli', 'Rucini', 'SALLA', 'SANDI', 'SANTONINI', 'SAVARDINA', 'SAVOLDELLO',
@@ -189,7 +189,7 @@ listDeFamille = [
     'PANEINFORNI','PANIGAI','PANZIERA','PAOLINI','PAPETTE','PASETTE','PASOTTI','PASQUALIGO',
     'PASQUALIN','PASSAMANER','PASSI','PASTA','PASTORI','PAVAZZA','PAVOLI','PAZINI','PAZZI',
     'PEDROCCHI','PEDROCCHI','PEDROSIN','PELANDINA','PENERINI','PERAZOLLO','PERINI','PERSEGO',
-    'PERSICO','PERSICO','PERUCHIN','PETROGALLI','PETROVICH','PETROVICH','PEZZANA','PEZZATO',
+    'PERSICO','PERUCHIN','PETROGALLI','PETROVICH','PETROVICH','PEZZANA','PEZZATO',
     'PEZZI','PEZZOLI','PIANELLA','PIASENTI','PIATI','PIATTI','PICAZZO','PICCARDI','PICCIOLI',
     'PICCOLI','PISONI','PIZONI','PIZZAMANO','PIZZORDINI','PLATEO','POCCOBELLI','POLESE',
     'POLICE','POLICI','POLISE','POLLI','PONTE','PORTA','POZZI','PREMUDA','PREZZATO','PROVEDAN',
@@ -248,7 +248,7 @@ listDeFamille = [
     'fortunio','mazzochi','lio','trevano','pazienti','giviani','zorzi','saloon','pinoli',
     'girardini','bragadini','sopai','rocchi','acerboni','lionello','vanesta','gardinali',
     'savi','sossai','asprea','alcaini','bertignazza','gasparoni','cavenago',
-    'gramolin','gagio','stiore','ponga','tronconi','asprea','penso','degna',
+    'gramolin','gagio','stiore','ponga','tronconi','penso','degna',
     'volpi','pellegrini','capellis','bordini','cussetti','alghisi','grotta','cremona',
     'ambrosi','fazandella','tanxik','ragasin','lavezzari','capparocca','grollo','luzziato',
     'demezzo','lion','gavazza','dosi','sanudo','monteso','sorzetto','sangian','ranier',
@@ -267,16 +267,22 @@ listDeFamille = [
     'venerando','raccanati','rubin','patella','pigozzo','guizetti','berretta',
     'cantoni','baretta','ruzzini','razzini','bellavita','passerina','vcelli','ghigi','bosato',
     'marzinoli','zandinelli','coreggio','psaus','benici','aguisti','martinego','merendis',
-    'checcia','imson','carlin','trafego','cranz','bonzio','marinengo'
+    'checcia','imson','carlin','trafego','cranz','bonzio','marinengo','bertignaza','aquisti',
+    'morosin','gerardi','ravagnin','gerlin','gerlini','dadda','guardani','maffioletti',
+    'zustiniani','giatti','ferutti','urbani','crascini','tosdechini','zorzi','giaccometti',
+    'pavani','mauro','spangher',
     ]
 
 listDeFamilleLower = [x.lower() for x in listDeFamille]
 setFamille = sorted(set(listDeFamilleLower))
 
-#%%
 with open(s2_setPrenoms, "w") as f:
-    json.dump(setPrenoms, f, encoding="utf-8")
+    json.dump(setPrenoms, f)
 
 with open(s2_setFamilles, "w") as f:
-    json.dump(setFamille, f, encoding="utf-8")
+    json.dump(setFamille, f)
+# %%
+print('lol' in setPrenoms)
+print('morosin' in setFamille)
+
 # %%

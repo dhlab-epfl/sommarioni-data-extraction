@@ -16,7 +16,7 @@ from data_filepaths import s0_scripts
 from data_filepaths import s2_setPrenoms
 from data_filepaths import s2_setFamilles
 
-import classes as c
+import classes as c 
  
 #from sys import from_sommarioni_to_countedTronqued
 #from sys import from_countedTronqued_listByTypes
@@ -304,20 +304,7 @@ with open(s2_setFamilles, encoding="utf-8") as f:
 with open(s2_setPrenoms,encoding="utf-8") as f:
     setPrenoms = json.load(f)
 
-# %%
-print('cappello' in setFamille)
-print('pietro' in setPrenoms)
-#print(setPrenoms)
-
-
-# %%
-print(setFamille)
-#STURM ? prénom ? n'apparait qu'une fois, Eurasia ?
-#pasini ? prenom ?
-#fabian maria
-
-# %% 
-listdeTitre = ['commisaria','sacerdote','primo']
+listdeTitre = ['commisaria','sacerdote','primo','secondo']
 listDeTitreLower = [x.lower() for x in listdeTitre]
 setTitre = sorted(set(listDeTitreLower))
 
@@ -328,9 +315,6 @@ setMembre = sorted(set(listDeMembreLower))
 listDeVille = []
 listFaconDecrireQuondam = ['quondam','q.','q.m.','q.m']
 setQuondam = sorted(set(listFaconDecrireQuondam))
-
-# %%
-
 
 #%%
 
@@ -523,16 +507,8 @@ def gestion_nom_seul(nomSeul, aff_result=False):
 
     return listdePersonne, listdeParcelle, pasEncoreClasse 
 
-
-#%%
-print(erediDelFu)
-
-#%%
-print(pasEncoreClasse)
-
 # %%
 nomAvecQuondamtemp = listByType_plusNumber[1][1]
-
 #%%
 #gestion des nom avec quondam
 def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
@@ -713,7 +689,31 @@ def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
                 listdePersonne.append(personneB)
                 for par in parcelles:
                     listdeParcelle.append(c.Parcelle(par, personneA))
-                ajouterLien(personneA,personneB,'quondam')    
+                ajouterLien(personneA,personneB,'quondam')
+            #nom-membre(lien)-quondam-prenom-prenom
+            elif (decoupe[0] in setFamille)&(decoupe[1]in setMembre)&(decoupe[2]in setQuondam)&(decoupe[3]in setPrenoms)&(decoupe[4]in setPrenoms):
+                parcelles = nomAvecQuondam[i][1]
+                personneA = c.Personne(decoupe[0],mf=decoupe[1],pq=parcelles)
+                personneB = c.Personne(decoupe[0],decoupe[3],pr2=decoupe[4],isqd=True)
+                listdePersonne.append(personneA)
+                listdePersonne.append(personneB)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, personneA))
+                ajouterLien(personneA,personneB,'quondam')   
+            else: 
+                pasEncoreClasse.append(decoupe)
+                nbParcNonClass += len(parcelles)
+        elif taille ==6:
+            #nom-prenom-prenom-quondam-prenom-prenom
+            if (decoupe[0] in setFamille)&(decoupe[1]in setPrenoms)&(decoupe[2]in setPrenoms)&(decoupe[3]in setQuondam)&(decoupe[4]in setPrenoms)&(decoupe[5] in setPrenoms):
+                parcelles = nomAvecQuondam[i][1]
+                personneA = c.Personne(decoupe[0],decoupe[1],pr2=decoupe[2],pq=parcelles)
+                personneB = c.Personne(decoupe[0],decoupe[4],pr2=decoupe[5],isqd=True)
+                listdePersonne.append(personneA)
+                listdePersonne.append(personneB)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, personneA))
+                ajouterLien(personneA,personneB,'quondam')
             else: 
                 pasEncoreClasse.append(decoupe)
                 nbParcNonClass += len(parcelles)
@@ -729,9 +729,6 @@ def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
         print('parcelles non classé ',nbParcNonClass)
 
     return listdePersonne, listdeParcelle, pasEncoreClasse
-  
-#%%
-print(pasEncoreClasse)
 
 #%%
 nomAvecFamille = listByType_plusNumber[2][1]
@@ -889,9 +886,7 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
         print('parcelles non classé ',nbParcNonClass)
 
     return listdePersonne, listdeParcelle, pasEncoreClasse
-    
-#%%
-print(pasEncoreClasse)
+
 
 nomEglise = listByType_plusNumber[3][1]
     
@@ -946,13 +941,56 @@ def gestion_venezia(nomVenezia, aff_result=False):
 
     return listPublic, listdeParcelle, pasEncoreClasse
 
+#%%
+nomDemanio = listByType_plusNumber[5][1]
+
+#%%
+def gestion_demanio(nomDemanio, aff_result=False):
+    listPublic = []
+    listdeParcelle = []
+    pasEncoreClasse = []
+    nbParcNonClass = 0
+
+    for i in range(len(nomVenezia)):
+        decoupe = re.split("\s",nomVenezia[i][0].lower())
+        taille = len(decoupe)
+        parcelles= nomVenezia[i][1]
+        if taille==2:
+            if (decoupe[1] == 'demanio'):
+                public = c.Public(decoupe[1],parcelles)
+                listPublic.append(public)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, public))
+        else :  
+            pasEncoreClasse.append(decoupe)
+            nbParcNonClass += len(parcelles)
+    if aff_result:
+        print('entrées classées ',len(listPublic))
+        print('non classées ',len(pasEncoreClasse))
+        print('total ',len(nomDemanio))
+        print('parcelles classée ',len(listdeParcelle))
+        print('parcelles non classé ',nbParcNonClass)
+
+    return listPublic, listdeParcelle, pasEncoreClasse
 # %%
 """
 for x in listPublic:
     print(x.nom)
     print(x.parcelles)
 """
+
+#%%
+def from_listByType_to_proprio(listByType_plusNumber):
+    gestion_nom_seul(listByType_plusNumber[0][1])
+    gestion_avec_quondam(listByType_plusNumber[1][1])
+    gestion_avec_famille(listByType_plusNumber[2][1])
+    gestion_chiesa(listByType_plusNumber[3][1])
+    gestion_venezia(listByType_plusNumber[4][1])
+    gestion_demanio(listByType_plusNumber[5][1])
+
 # %%
+"""
 https://stackoverflow.com/questions/46408051/python-json-load-set-encoding-to-utf-8
 with open('keys.json', encoding='utf-8') as fh:
     data = json.load(fh)
+"""

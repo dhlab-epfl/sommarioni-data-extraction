@@ -170,9 +170,9 @@ def from_countedTronqued_to_print(countedTronqued):
             other.append(countedTronqued[i])
             othSum += countedTronqued[i][0]
 
-"eredi del fu"
-"^([a-z]|')+ ([a-z])+$"
-"( (ed?|q\.m?\.?|quondam) ([a-z]|')+ ?[a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?)*"
+    "eredi del fu"
+    "^([a-z]|')+ ([a-z])+$"
+    "( (ed?|q\.m?\.?|quondam) ([a-z]|')+ ?[a-z]{0,15}( di)? ?[a-z]{0,15}(e fratell(i|o))?)*"
 
     print("Venise : noms = ",len(venezia), " parcelles = ", venSum,
         "\nDemanio : noms = ", len(demanio), " parcelles = ", demSum,

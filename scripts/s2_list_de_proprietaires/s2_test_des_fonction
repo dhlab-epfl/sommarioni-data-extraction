@@ -1,0 +1,30 @@
+#%%
+import json
+import re
+
+import sys
+sys.path.append("../../src")
+sys.path.append("../../scripts")
+sys.path.append("../../scripts/s0_list_of_terms")
+
+from data_filepaths import s0_raw_sommarioni
+
+#%%
+with open(s0_raw_sommarioni,encoding="utf-8") as f:
+    sommarioni = json.load(f)
+
+#%%
+countedTronqued_plusNumber = from_sommarioni_to_Tronqued_plus_parcelNumber(sommarioni)
+
+# %%
+listByType_plusNumber = from_countedplusnumber_to_listBytype(countedTronqued_plusNumber)
+
+# %%
+nomAvecQuondam = listByType_plusNumber[1][1]
+
+#%%
+#gestion des nom avec quondam
+x, y, z = gestion_avec_quondam(nomAvecQuondam, aff_result=True)
+
+print(z)
+# %%
