@@ -11,6 +11,8 @@ sys.path.append("../../scripts")
 from data_filepaths import s0_raw_sommarioni
 from data_filepaths import s1_bigrams
 
+from s1_regex.s1_bigram import from_sommarioni_to_bigrams
+
 #%%
 with open(s0_raw_sommarioni,encoding="utf-8") as f:
     sommarioni = json.load(f)
