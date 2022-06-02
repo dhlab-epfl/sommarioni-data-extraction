@@ -4,7 +4,7 @@
 #une personne simple
 class Personne:
     def __init__(self,nm1,pr1=None,pr2=None,nm2=None,di=None,mf=None,titre=None,
-            ps=None,pq=None,pf=None,pa = None,pi=None,isqd=False):
+            ps=None,pq=None,pf=None,pa = None,pi=None,isqd=False, isMor=False):
         self.prenom1 = pr1
         self.prenom2 = pr2
         
@@ -21,6 +21,7 @@ class Personne:
         self.parIndivi = pi
 
         self.isAquondam = isqd
+        self.isMorto = isMor
         self.lien = []
 
     def __eq__(self, other):

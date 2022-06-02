@@ -17,29 +17,29 @@ from data_filepaths import s2_setFamilles
 
 #%%
 listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
-    'Agostino','Agnese','Alberto','onofrio',
-    'Alessandro','Allessandro',
-    'Almorò','Alvise','alteniero','Ambrogio',
+    'Agostino','Agnese','Alberto','onofrio','gottardo',
+    'Alessandro','Allessandro','stazio','moise\'','vetore',
+    'Almorò','Alvise','alteniero','Ambrogio','adriano','tiberio',
     'Andrea','Andreina','Andriana','andrianna','angeglo','Angela','Angelo',
     'Anna','Anselmo','Antonia','Antonio','Apolonio','apollonio','Ascanio','Aurelio','Baldassare',
     'Bartolomeo','Basilio','Battista','Benedeto','Benedetto','benetto','bernardin',
     'Bernardino','Bernardo','Bertolo','Bertucci','Bertazzi','Bertuzzi','Benizio',
-    'Biaggio','Bianca','Bortolameo',
+    'Biaggio','Bianca','Bortolameo','gregorio','angelica','venturino',
     'Bortolo','bartolameo','Bortolomeo','Bortolomio','bartolamio','Camilla','Camillo',
     'Carlo','Cattarin','Caterina','Catterina','Cecilia','Cesare',
     'Chiara','claudio','Contarina','Coriolano','Cornelia','Costantin',
     'Costantino','cristina','Cristoforo','Daniel','Daniele','David','Davide',
-    'Domenica','Domenico','eleonora','Elena',
+    'Domenica','Domenico','eleonora','Elena','almerigo','arcenio',
     'Elisabetta','Elisabeta','Elisazio','Ellena','emanuele',
-    'Emanuel','Enrico','fabbio','Fabio','Faustino',
-    'Federico','Federigo','Felice','Ferdinando','Filippo',
-    'Flaminio','Fortunato','Francesca',
+    'Emanuel','Enrico','fabbio','Fabio','Faustino','appostolo',
+    'Federico','Federigo','Felice','Ferdinando','Filippo','ridolfo',
+    'Flaminio','Fortunato','Francesca','raimondo','anastasio',
     'Francesco','franco','Gabriel','Gabriele','Gabriella','Gaetano','Gaspare','Gasparo','Gerolamo',
-    'Giacinto','Giacomo','Gio.Batta','Gioachino',
+    'Giacinto','Giacomo','Gio.Batta','Gioachino','mariano','alfonso',
     'Giorgio','Giovanna','Giovanni','GIrolamo','Girolamo','Giulia','Giulio',
     'Giuseppe','Giuiseppe','Giustina','Giustiniana','Giusto','Ignazio','Illustrissimo','Isabella','Laura','Lauro',
-    'Lazaro','Laonardo','Leonardo','Leone','Lin','Livio',
-    'Lodovica','Lodovico','Loredana','silvano',
+    'Lazaro','Laonardo','Leonardo','Leone','Lin','Livio','mandolin',
+    'Lodovica','Lodovico','Loredana','silvano','ottavian','beltrame',
     'Lorenzo','Luca','Lucca','lucio','Lucia','Lugrezia','Luigi',
     'Maddalena','Madalena','marcella','Marcello','Marianna','MarcAntonio','marc\'antonio',
     'Marco','Maria','Mariana','marietta','Mario','Marin','Marina','Marino',
@@ -48,15 +48,15 @@ listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
     'Niccolò','Nicolò','olivo','Onorio','Orsola','Ottaviano','Ottavio',
     'Orazio','Osvaldo','Paolina','Paolo','Pasin','Pasquale','Pasqualino',
     'Paulo','perina','piero','Pietro','Pisana','Polisena','Polissena','Raffaele',
-    'Regina','Rinaldo','Rizzardo','Roberto','Rocco','romana',
+    'Regina','Rinaldo','Rizzardo','Roberto','Rocco','romana','lucrezia','spiridon',
     'Rosa','sadia','Salamone','Salomon','Salomone','Salvador','salvatore','Samuele','Santo','Sebastian',
-    'Sebastiano','Serafina','Silvestro','Simeone','Simon','Simone',
-    'Soranzo','Stanislao','Stefano','Steffano','Teodoro','melchiore'
-    'Teresa','Tomaso','Tommaso','Valentin','Valentino','Vettor',
+    'Sebastiano','Serafina','Silvestro','Simeone','Simon','Simone',"michel'angelo",
+    'Soranzo','Stanislao','Stefano','Steffano','Teodoro','melchiore','bortolo',
+    'Teresa','Tomaso','Tommaso','Valentin','Valentino','Vettor','zacaria',
     'Vettore','Vido','Vincenza','Vincenzo','Vita','Vitale','Vittoria','vitore',
-    'Vittore','Vivante','Zaccaria','Zuanne','gianfrancesco',
+    'Vittore','Vivante','Zaccaria','Zuanne','gianfrancesco','emanuelle','maffio',
     'reniero','carolina','demetrio','speridion','spiridion','spiridione','capello',
-    'sabbato','leonara','lunardo','lavia','zanchi','michee','guido',]
+    'sabbato','leonara','lunardo','lavia','zanchi','michee','guido','michel','micchel']
 #primo ??? moisè Raffaele(surtout pour l'ange, 2-3 fois prenom) soranzo ?(bcp + souvent nom)
 #lin?? Marcello??
 #gio batta
@@ -270,7 +270,18 @@ listDeFamille = [
     'checcia','imson','carlin','trafego','cranz','bonzio','marinengo','bertignaza','aquisti',
     'morosin','gerardi','ravagnin','gerlin','gerlini','dadda','guardani','maffioletti',
     'zustiniani','giatti','ferutti','urbani','crascini','tosdechini','zorzi','giaccometti',
-    'pavani','mauro','spangher',
+    'pavani','mauro','spangher','marino','sanchetta','zannini','visetti','wittmaan','falconi',
+    'sopetti','pasquali','savorgnani','michiel','ottavian','beregan','ferrarioni','zancolo\'',
+    'pavegio','candoni','casati','crovato','proto','fereti','bullo','bradamante','lovisello',
+    'sensato','albinoni','puliti',"buldu'",'alessio','levi','ferarin','giusto','pedoni','crivelli',
+    'gregorino','topi','giacomuzzi','zifra','ruffini','marzorati','conto','barazzutti','lian',
+    'crescini','bissoni','storti','seles','duli','solimbergo','gruer','rafai','venerio','calvo',
+    'giustiniano','biasutti','quarti','rizzotti','sangiantoffetti','lacciadelli','rugia','panziero',
+    'marcolin','lucciadelli','torre','quadri','morilbatto','gardani','tognolo','tognollo','toniollo',
+    'gabrini','paruta','piuco','foretti','giorgula','caldonazzo','azemarel','fava','monticana','ortali',
+    'mongiat','busella','minopoli','bada','biondetti','mandelli','bettio','fedeli','capellari','vicelli',
+    "cantu'",'taboga','suppies','lantana','vanest','burinello','rombenchi','mortari','perini','cavagnis',
+    'folin','gerardini','dalcqua',
     ]
 
 listDeFamilleLower = [x.lower() for x in listDeFamille]
@@ -282,7 +293,8 @@ with open(s2_setPrenoms, "w") as f:
 with open(s2_setFamilles, "w") as f:
     json.dump(setFamille, f)
 # %%
-print('lol' in setPrenoms)
-print('morosin' in setFamille)
+print('giorgio' in setPrenoms)
+print('giovanni' in setPrenoms)
+print("dona'" in setFamille)
 
 # %%
