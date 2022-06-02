@@ -8,6 +8,14 @@ import nltk
 
 #%%
 def from_sommarioni_to_bigrams(sommarioni):
+    """ This function does this and that
+    
+    parameters:
+    - sommarioni
+
+    returns
+    - something
+    """
     parcelOwnerTexts = [line['parcelOwnerText'] for line in sommarioni]
 
     length = len(parcelOwnerTexts)
