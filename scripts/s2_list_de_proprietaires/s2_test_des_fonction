@@ -3,6 +3,8 @@ import json
 import re
 
 import sys
+
+from scripts.s2_list_de_proprietaires.s2_listDesPersonnes import gestion_nom_seul
 sys.path.append("../../src")
 sys.path.append("../../scripts")
 sys.path.append("../../scripts/s0_list_of_terms")
@@ -20,14 +22,26 @@ countedTronqued_plusNumber = from_sommarioni_to_Tronqued_plus_parcelNumber(somma
 listByType_plusNumber = from_countedplusnumber_to_listBytype(countedTronqued_plusNumber)
 
 # %%
-nomAvecQuondam = listByType_plusNumber[1][1]
+nomSeul=listByType_plusNumber[0][1]
+nomAvecQuondam=listByType_plusNumber[1][1]
 nomAvecFamille = listByType_plusNumber[2][1]
+nomEglise = listByType_plusNumber[3][1]
+nomVenezia=listByType_plusNumber[4][1]
+nomDemanio=listByType_plusNumber[5][1]
+#%%
+#gestion des nom seul
+x, y, z = gestion_nom_seul(nomSeul, aff_result=True)
+
 #%%
 #gestion des nom avec quondam
 x, y, z = gestion_avec_quondam(nomAvecQuondam, aff_result=True)
 
 #%%
+#gestion des nom avec famille
 x, y, z = gestion_avec_famille(nomAvecFamille, aff_result=True)
+
 #%%
-print(z)
+for decoupe in z:
+    if len(decoupe) == 4:
+        print(decoupe)
 # %%

@@ -40,7 +40,7 @@ listdeTitre = ['commisaria','sacerdote','primo','secondo']
 listDeTitreLower = [x.lower() for x in listdeTitre]
 setTitre = sorted(set(listDeTitreLower))
 
-listdeMembre = ['fratelli','fratello','nipote','nipoti','sorelle','eredi','consorti','vedova','famiglia','figlio','figli','compagni']
+listdeMembre = ['fratelli','fratello','nipote','nipoti','sorelle','sorella','eredi','consorti','vedova','famiglia','figlio','figli','fillio','compagni','conorti']
 listDeMembreLower = [x.lower() for x in listdeMembre]
 setMembre = sorted(set(listDeMembreLower))
 
@@ -255,7 +255,7 @@ def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
         if (decoupe[taille-1]in setQuondam):
             taille -= 1
             if taille == 1:
-            #nom de famille
+                #nom de famille
                 if decoupe[0] in setFamille:
                     parcelles = nomAvecQuondam[i][1]
                     personne = c.Personne(decoupe[0], ps=parcelles)
@@ -515,7 +515,6 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
                 listdePersonne.append(personne)
                 for par in parcelles:
                     listdeParcelle.append(c.Parcelle(par, personne))
-                print(decoupe)
             else: 
                 pasEncoreClasse.append(decoupe)
                 nbParcNonClass += len(parcelles)   
@@ -556,6 +555,12 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
                 for par in parcelles:
                     listdeParcelle.append(c.Parcelle(par, [personneA,personneB]))
                 ajouterLien(personneA,personneB,'fratello')
+            #nom-prenom-prenom-e(d)-membre
+            elif decoupe_corresp([setFamille,setPrenoms,setPrenoms,['e','ed'],setMembre],taille,decoupe):
+                personne = c.Personne(decoupe[0],decoupe[1],pr2=decoupe[2],mf=decoupe[4],ps=parcelles)
+                listdePersonne.append(personne)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, personne))
             else: 
                 pasEncoreClasse.append(decoupe)
                 nbParcNonClass += len(parcelles)
@@ -594,6 +599,15 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
                 for par in parcelles:
                     listdeParcelle.append(c.Parcelle(par, [personneA,personneB]))
                 ajouterLien(personneA,personneB,decoupe[4])
+            #nom-prenom-prenom-e-prenom-indivisi
+            elif decoupe_corresp([setFamille,setPrenoms,setPrenoms,['e','ed'],setPrenoms,['indivisi','indivise']],taille, decoupe):
+                personneA= c.Personne(decoupe[0],decoupe[1],pr2=decoupe[2],pf=parcelles, pi=parcelles)
+                personneB= c.Personne(decoupe[0],decoupe[4],pf=parcelles, pi=parcelles)
+                listdePersonne.append(personneA)
+                listdePersonne.append(personneB)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, [personneA,personneB]))
+                ajouterLien(personneA,personneB,'fratello')
             else: 
                 pasEncoreClasse.append(decoupe)
                 nbParcNonClass += len(parcelles)
@@ -612,6 +626,16 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
                 listdePersonne.append(personneA)
                 listdePersonne.append(personneB)
                 listdePersonne.append(personneC)
+            #nom-prenom-e-membre(lien)-quondam-prenom-prenom
+            elif ((decoupe[0] in setFamille)&(decoupe[1] in setPrenoms)&((decoupe[2]=='e')|(decoupe[2]=='ed'))
+                    &(decoupe[3]in setMembre)&(decoupe[4] in setQuondam)&(decoupe[5] in setPrenoms)&(decoupe[6] in setPrenoms)):
+                personneA = c.Personne(decoupe[0],decoupe[1],mf=decoupe[3],pq=parcelles)
+                personneB = c.Personne(decoupe[0],decoupe[5],pr2=decoupe[6], isqd=True)
+                listdePersonne.append(personneA)
+                listdePersonne.append(personneB)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, personne))
+                ajouterLien(personneA,personneB,'quondam')
             #nom-prenom-prenom-e(d)-membre-quondam-prenom
             elif decoupe_corresp([setFamille,setPrenoms,setPrenoms,['e','ed'],setMembre,setQuondam,setPrenoms],taille,decoupe):
                 personneA= c.Personne(decoupe[0],decoupe[1],pr2=decoupe[2],mf=decoupe[4],pq=parcelles)
@@ -625,6 +649,20 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
                 personneA = c.Personne(decoupe[0],decoupe[1],pq=parcelles,pf=parcelles)
                 personneB = c.Personne(decoupe[0],decoupe[3],pq=parcelles,pf=parcelles)
                 personneC = c.Personne(decoupe[0],decoupe[5],pr2=decoupe[6],isqd=True)
+                for par in parcelles:
+                    listdeParcelle.append(c.Parcelle(par, personne))
+                ajouterLien(personneA,personneB,'fratello')
+                ajouterLien(personneA,personneC,'quondam')
+                ajouterLien(personneB,personneC,'quondam')
+                listdePersonne.append(personneA)
+                listdePersonne.append(personneB)
+                listdePersonne.append(personneC)
+            #nom-prenom-e-prenom-quondam-prenom-indivisi
+            elif ((decoupe[0] in setFamille)&(decoupe[1] in setPrenoms)&((decoupe[2]=='e')|(decoupe[2]=='ed'))
+                    &(decoupe[3] in setPrenoms)&(decoupe[4]in setQuondam)&(decoupe[5]in setPrenoms)&(decoupe[6] in ['indivisi','indivise'])):
+                personneA = c.Personne(decoupe[0],decoupe[1],pq=parcelles,pf=parcelles,pi=parcelles)
+                personneB = c.Personne(decoupe[0],decoupe[3],pq=parcelles,pf=parcelles,pi=parcelles)
+                personneC = c.Personne(decoupe[0],decoupe[5],isqd=True)
                 for par in parcelles:
                     listdeParcelle.append(c.Parcelle(par, personne))
                 ajouterLien(personneA,personneB,'fratello')
@@ -738,10 +776,10 @@ def gestion_demanio(nomDemanio, aff_result=False):
     pasEncoreClasse = []
     nbParcNonClass = 0
 
-    for i in range(len(nomVenezia)):
-        decoupe = re.split("\s",nomVenezia[i][0].lower())
+    for i in range(len(nomDemanio)):
+        decoupe = re.split("\s",nomDemanio[i][0].lower())
         taille = len(decoupe)
-        parcelles= nomVenezia[i][1]
+        parcelles= nomDemanio[i][1]
         if taille==2:
             if (decoupe[1] == 'demanio'):
                 public = c.Public(decoupe[1],parcelles)

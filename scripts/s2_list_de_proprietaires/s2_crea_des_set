@@ -17,7 +17,7 @@ from data_filepaths import s2_setFamilles
 
 #%%
 listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
-    'Agostino','Agnese','Alberto','onofrio','gottardo',
+    'Agostino','Agnese','Alberto','onofrio','gottardo','gerardo',
     'Alessandro','Allessandro','stazio','moise\'','vetore',
     'Almorò','Alvise','alteniero','Ambrogio','adriano','tiberio',
     'Andrea','Andreina','Andriana','andrianna','angeglo','Angela','Angelo',
@@ -56,7 +56,15 @@ listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
     'Vettore','Vido','Vincenza','Vincenzo','Vita','Vitale','Vittoria','vitore',
     'Vittore','Vivante','Zaccaria','Zuanne','gianfrancesco','emanuelle','maffio',
     'reniero','carolina','demetrio','speridion','spiridion','spiridione','capello',
-    'sabbato','leonara','lunardo','lavia','zanchi','michee','guido','michel','micchel']
+    'sabbato','leonara','lunardo','lavia','michee','guido','michel','micchel',
+    'lazzaro','giuseppa','arturo','isidoro','costante','adriana','fedrico','pellegrin',
+    'annibale','nunzio','nuncio','brigida','tranquillo','veronica','vito','guglielmo',
+    'pasqua','giacobe','michelangelo','giovavanni','clemente','gisacomo','pacifico',
+    'amadeo','sigisberto','spiridone','giusepp','guseppe','baldissera','donato',
+    'giovana','alesandro','sedecia','abundio','giancarlo','tadeo','benvenuto',
+    'vitor','inocente','santa','vittorio','cizisberto','baldissere','biasio',
+    'danielle','fardinando','ancillotto','girardo'
+    ]
 #primo ??? moisè Raffaele(surtout pour l'ange, 2-3 fois prenom) soranzo ?(bcp + souvent nom)
 #lin?? Marcello??
 #gio batta
@@ -107,7 +115,7 @@ listDeFamille = [
     'Driuzzi', 'Emo','FABBRO', 'FOSCARINI', 'FOSCARINI', 'FRANCESCHI', 'FRANCOVICH',
     'FRANCOVIK', 'Foscari', 'Francesconi', 'GIOVANELLI', 'GIUSTINIAN', 'GRADENIGA',
     'GRADENIGO', 'GRIMANI', 'GRIPUTO', 'GRITTI', 'Gambillo', 'Garganego', 'Gazato',
-    'Ghidoni', 'Girardi','Girardo', 'Giuradelli', 'Grandis', 'Grassi', 'Grimani',
+    'Ghidoni', 'Girardi', 'Giuradelli', 'Grandis', 'Grassi', 'Grimani',
     'Griti', 'Guerra', 'Guidoni', 'LABIA', 'LIPOMANO', 'LISCHIUTA', 'LOREDAN',
     'LUCCATELLI', 'Loschi', 'Lucatello', 'Luzzato', 'MAFFEI', 'MAINARDI',
     'MANOLESSO', 'MARCONI', 'MARINI', 'MARTINENGO', 'MEMO', 'MICHELI', 'MOLIN',
@@ -193,7 +201,7 @@ listDeFamille = [
     'PEZZI','PEZZOLI','PIANELLA','PIASENTI','PIATI','PIATTI','PICAZZO','PICCARDI','PICCIOLI',
     'PICCOLI','PISONI','PIZONI','PIZZAMANO','PIZZORDINI','PLATEO','POCCOBELLI','POLESE',
     'POLICE','POLICI','POLISE','POLLI','PONTE','PORTA','POZZI','PREMUDA','PREZZATO','PROVEDAN',
-    'PUGNALETTO','PUGNALIN','PUZZETTI','Pace','Pacifico','Padovan','Paganello','Palazzi',
+    'PUGNALETTO','PUGNALIN','PUZZETTI','Pace','Padovan','Paganello','Palazzi',
     'Palese','Panciera','Panocchia','Pantanali','Papafava','Paseti','Pasqualigo','Peccenini',
     'Pedrocchi','Pelegrini','Perasciuti','Perosa','Piaja','Piatti','Pico','Pignola','Pilizioli',
     'Pinaffo','Pinato','Pizioli','Plendini','Polacco','Polaco','Polese','Poli','Pora','Pori',
@@ -256,7 +264,7 @@ listDeFamille = [
     'vituri','savioni','pivoli','versori','pele','trovisan','lambranzi','vivante','leoni',
     'azzoni','calliari','pedretti','modon','gasparotti','rossini','donati','orsato',
     'dabala\'','pelizioli','padoan','fossa','fidati','battagia','deputez','gheltof',
-    'dondiorologio','michielli','tranquillo','bagozzi','macacari','bonvicini','paolucci',
+    'dondiorologio','michielli','bagozzi','macacari','bonvicini','paolucci',
     'paulucci','bentivoglio','saler','maffetti','battaggia','petropoli','cappello','bellini',
     'paoluzzi','manera','zanutti','pinardi','muttoni','ravenna','ferazzi','domeneghini',
     'foccacia','ghenisaghero','armano','baglione','sanfermo','busca','lione','polverini',
@@ -281,7 +289,32 @@ listDeFamille = [
     'gabrini','paruta','piuco','foretti','giorgula','caldonazzo','azemarel','fava','monticana','ortali',
     'mongiat','busella','minopoli','bada','biondetti','mandelli','bettio','fedeli','capellari','vicelli',
     "cantu'",'taboga','suppies','lantana','vanest','burinello','rombenchi','mortari','perini','cavagnis',
-    'folin','gerardini','dalcqua',
+    'folin','gerardini','dalcqua','chiodo','loccatelli','fascini','resaro','dapazze','gavardo','tornieli',
+    'dona','vassilli','basili','giacutti','maifette','gini','gargadori','facchi','casalari','sipioni',
+    'bandiera','codognato','fadiga','bozzi','voderini','basido','pestina','mostari','savorgnan','liccini',
+    'scipioni','grllo','giuzzetti','talia','grimaldi','garzadori','basida','caminarovik','bravetti',
+    'cortinovis','faseuri','simitecolo','zagher','biscuchia','crota','pesenti','biretti','trevisa','bressa',
+    'rocchetti','squarzina','signoreti','taraboto','tassini','andrigheti','albergoni','mazzoni','mingoto',
+    'ussemphumer','zanardi','zuccani','salon','fracasso','rublo','carraro','barcella','lorenzi','tan',
+    'gregolin','arnaldi','rusteghello','boccacini','montanari','volpato','vessil','boscovich','scarizza',
+    'barziza','isella','peruta','dionisio','marchiori','roder','zanuti','poloni','ongaro','nardo','verini',
+    'gianolla','gianola','bertoti','gorgato','tamagno','malosso','lucatello','zanchi','marcheti','perotin',
+    'catonari','bonomio','simonato','trento','passati','zochi','muchiachion','bujovich','rame','alessandrini',
+    'boldrin','cavalieri','vettori','corena','barati','scarselini','toaldo','benetasso','baccanello',
+    'mengato','picoli','zanardini','lucchese','antoniassi','varnier','vernasobre','bianchi','soprana',
+    'calichipoli','manzini','pelai','beni','bisson','betti','cossetti','fiorin','ciera','pesodromo','nordio',
+    'siola','cenarin','pachiasso','simoncin','marzari','dante','zavelli','crozzola','bonamin','gagieta',
+    'calzavara','marcoleoni','peteno','gamba','formagin','salce','darduin','franceschini','bortolamiello',
+    'parrocco','cardani','agnelleti','torni','lunigo','bonacini',"peteno'",'sografi','beneco','dalacqua',
+    'gabardi','paron','chizzalli','coratelli','alpron','triffoni','rebelin','zappa','lotto','morellato',
+    'chia','boromeo','bocarin','flamini','grisoldi','camerata','avanzeti','legrenzi','botti','marchesati',
+    'morossi','iacur','vicentini','fannio','mosto','petaro','prioli','boldrini','rombiasi',"vlasto'",
+    'milani','morcelli','basso','mosto','vanetti','vitalba','ribies','baraiter','fracasietti','scarella',
+    'briani','maroni','acqua','barbetta','ferracina','revizzi','albini','giacchetti','soratroi','realdi','paneti',
+    'pedrali','morbiotto','inion','demin','domeni','merlin','viali','penuta','florio','gheno','caregiani',
+    'vallarezzo','giuliani','gianosovich','agnoletti','padella','favro','sbutega','angelini','glichi',
+    "carita'",'tirroni','bussella','sapelli','marcatti','raffetti','duglia','niasa','bragatino','pieri',
+    
     ]
 
 listDeFamilleLower = [x.lower() for x in listDeFamille]
@@ -293,8 +326,8 @@ with open(s2_setPrenoms, "w") as f:
 with open(s2_setFamilles, "w") as f:
     json.dump(setFamille, f)
 # %%
-print('giorgio' in setPrenoms)
-print('giovanni' in setPrenoms)
-print("dona'" in setFamille)
+print('battista' in setPrenoms)
+print('bernardino' in setPrenoms)
+print('soranzo' in setFamille)
 
 # %%
