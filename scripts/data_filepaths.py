@@ -19,9 +19,7 @@ s0_owners_texts = j(s0_folder, "ownersTexts.json")
 s0_texts_plus_parcels = j(s0_folder, "textsPlusParcels.json")
 s0_bigrams = j(s0_folder, "bigrams.json")
 
-s1_folder = j(data_folder, "s1_regex")
-
-s2_folder = j(data_folder, "s2_list_de_proprietaires")
+s2_folder = j(data_folder, "s2_extraction")
 s2_setPrenoms = j(s2_folder,"setPrenoms.json")
 s2_setFamilles = j(s2_folder,"setFamilles.json")
 

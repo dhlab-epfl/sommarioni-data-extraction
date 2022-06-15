@@ -132,7 +132,7 @@ listDeFamille = [
     'Toderini', 'Todeschini', 'VALARESSO', 'VALIER', 'VENDRAMIN', 'VENIER', 'VISCOVICH',
     'Valvason', 'Vendramin', 'Vitturi', 'Widman', 'ZAMFERMO', 'ZAMPIERI', 'ZANFERMO', 'ZEN',
     'ZENOBIO', 'ZINELLI', 'ZOLIO', 'ZOLIO', 'ZON', 'ZUCCATO', 'Zamparo', 'Zampiceli', 'Zanbelli',
-    'Zechinato', 'Zon', 'Zuanne'
+    'Zechinato', 'Zon', 'Zuanne',
     'Castelli','Catani','Cavazza','Ceponi','Cera','Cerotti','Chiaraba','Chichisiola','Chimotto',
     'Chioelolo','Cisi','Ciuran','Civran','Clario','Clementi','Clementi','Coen','PORTO','Porto',
     'Colombo','Combi','Comello','Comina','Contarini','Conti','Contin','Cornelio','Corner',
@@ -244,13 +244,13 @@ listDeFamille = [
     'trieste','farelli','mosini','morosini','barbon','bondoner','bonali',
     'lucchesi','caliari','kromer','gradenigo','fantinelli','zoccolo','stecchini',
     'toffetti','leccini','bonagli','rugeri','filosi','concina','corniani','bovicini',
-    'testa','accerboni','pasco','sabioni','lino','giupponi','agazzi','lazzari','malipiero'
+    'testa','accerboni','pasco','sabioni','lino','giupponi','agazzi','lazzari','malipiero',
     'monticano','piccoli','pepoli','baldovini','veronesi','giupponi',
     'gritti','foscarini','vacilli','lio','mastini','berengo','belloto',
     'molini','galino','minio','gallino','rinaldo','pagini','magro','caroboli',
     'grifalconi','ancillo','crucij','lio','venier','guerra','priuli',
     'nani','zaguri','fontanella','steffani','fanelli','bravo','manini','malipiero',
-    'vanentgardenn','benzoni','turchetto','riva','miani','giovannelli','grotto','peruli'
+    'vanentgardenn','benzoni','turchetto','riva','miani','giovannelli','grotto','peruli',
     'giuponni','monticano','fisser','gambiosi','marzolo','carminati','terracina','angaran',
     'zustinian','giustinian','recanati','pisana','longo','minelli','rota','mocchi',
     'corner','moroni','fanelli','pussi','brini','lazari','zanenghi','iacour','tassis',
@@ -321,6 +321,7 @@ listDeFamille = [
 
 listDeFamilleLower = [x.lower() for x in listDeFamille]
 setFamille = sorted(set(listDeFamilleLower))
+
 print('setfamille : ', len(setFamille))
 
 with open(s2_setPrenoms, "w") as f:
@@ -328,9 +329,5 @@ with open(s2_setPrenoms, "w") as f:
 
 with open(s2_setFamilles, "w") as f:
     json.dump(setFamille, f)
-# %%
-print('battista' in setPrenoms)
-print('bernardino' in setPrenoms)
-print('soranzo' in setFamille)
 
 # %%

@@ -32,15 +32,14 @@ nomAvecQuondam=listByType_plusNumber[5][1]
 nomAvecFamille = listByType_plusNumber[6][1]
 #%%
 #gestion des nom seul
-x, y, z = gestion_nom_seul(nomSeul, aff_result=True)
+personneSeul, parcelesSeul, nonClasseeSeul = gestion_nom_seul(nomSeul, aff_result=True)
 
 #%%
 #gestion des nom avec quondam
-x, y, z = gestion_avec_quondam(nomAvecQuondam, aff_result=True)
+personnesQuondam, parcellesQuondam, nonClasseeQuondam = gestion_avec_quondam(nomAvecQuondam, aff_result=True)
 
 #%%
 #gestion des nom avec famille
-x, y, z = gestion_avec_famille(nomAvecFamille, aff_result=True)
-
+personnesFamille, parcellesFamille, nonClasseeFamille = gestion_avec_famille(nomAvecFamille, aff_result=True)
 
 # %%

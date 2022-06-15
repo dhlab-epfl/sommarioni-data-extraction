@@ -23,7 +23,7 @@ def from_texts_to_listByType(listOfTexts):
     Trie les textes de propriétaires en fonction de leur catégories
     
     paramètre :
-        listOfTexts (liste de tuples (int, string)): la liste des entrées et leur nombre d'occurences
+        listOfTexts (liste de tuples (int, string)): la liste des entrées et leur nombre d'occurrences
     
     retourne :
         result (liste de tuplet (string, liste de tuples (int, string)):
@@ -122,8 +122,9 @@ def from_textsPlusParcels_to_listBytype(ListofTextsPlusParcels):
         else:
             other.append((ListofTextsPlusParcels[0][i],ListofTextsPlusParcels[1][i]))
 
-        result = [("NomSeul", nameSolo),("NomEtQuondam",nameQuondam),("NomAvecFamille",nameEFratello),("NomDesEglises",chiesa),
-            ("Venezia", venezia),("Demanio",demanio),("other",other)]        
+        result = [("Venezia", venezia),("Demanio",demanio),("Chiesa",chiesa),("Congregazione",congregazione),
+            ("NomSeul", nameSolo),("NomEtQuondam",nameQuondam),("NomAvecFamille",nameEFratello),
+            ("Sic",nameSic),("Irrelevant",irrelevant),("Other",other)]       
     
     return result 
 

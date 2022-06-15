@@ -21,7 +21,7 @@ def from_sommarioni_to_texts(sommarioni):
                     sommarioni (tableau json loadé): Les sommarioni    
 
             Returns:
-                    counted (liste de tuples (int, string)): la liste des entrées et leur nombre d'occurences
+                    counted (liste de tuples (int, string)): la liste des entrées et leur nombre d'occurrences
                     
     '''
 
