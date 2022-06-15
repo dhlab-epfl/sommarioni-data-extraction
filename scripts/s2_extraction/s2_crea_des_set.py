@@ -14,6 +14,12 @@ sys.path.append("../../scripts")
 from data_filepaths import s2_setPrenoms
 from data_filepaths import s2_setFamilles
 
+#%%
+"""
+Création des sets de prénoms et de noms, 
+on rajoute les nom au fur et à mesure puis on les mets en minuscule,
+et les classe par ordre alphabétique
+"""
 
 #%%
 listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
@@ -63,17 +69,13 @@ listDePrenoms = ['Abondio','Abram','Abramo','adelaide','Adelajde','Agostin',
     'amadeo','sigisberto','spiridone','giusepp','guseppe','baldissera','donato',
     'giovana','alesandro','sedecia','abundio','giancarlo','tadeo','benvenuto',
     'vitor','inocente','santa','vittorio','cizisberto','baldissere','biasio',
-    'danielle','fardinando','ancillotto','girardo'
+    'danielle','fardinando','ancillotto','girardo','matilde'
     ]
-#primo ??? moisè Raffaele(surtout pour l'ange, 2-3 fois prenom) soranzo ?(bcp + souvent nom)
-#lin?? Marcello??
-#gio batta
-#agostin = agostino ? renier bernardin = bernardino (1 seul fois)
-#GIrolamo => essayer de réunir avec Girolamo
-#attention Santo
+
 listDePrenomsLower = [x.lower() for x in listDePrenoms]
 setPrenoms = sorted(set(listDePrenomsLower))
 
+print('setprenom : ', len(setPrenoms))
 
 listDeFamille = [
     'Acciajoli','Acerbi','ACQUISTI','Acquisti','Aglina','AGOSTINI', 'ALBEREGNO',
@@ -126,14 +128,14 @@ listDeFamille = [
     'RAZINI', 'RENIER', 'RIGONI', 'RIVA', 'Rampinetti', 'Renier', 'Rezzonico', 'Rizzi',
     'Rotta', 'Rubelli', 'Rucini', 'SALLA', 'SANDI', 'SANTONINI', 'SAVARDINA', 'SAVOLDELLO',
     'SODERINI', 'SOLARI', 'SORANZO', 'SPIGA', 'SPINELLI', 'SUDARINI', 'Sandi', 'Sansoni',
-    'Sapella', 'Savaldello', 'Solari', 'Stella', 'Sulam', 'TASCA', 'TODESCHINI', 'Tiepolo',
+    'Sapella', 'Savaldello', 'Solari', 'Stella', 'Sulam', 'TASCA', 'TODESCHINI',
     'Toderini', 'Todeschini', 'VALARESSO', 'VALIER', 'VENDRAMIN', 'VENIER', 'VISCOVICH',
     'Valvason', 'Vendramin', 'Vitturi', 'Widman', 'ZAMFERMO', 'ZAMPIERI', 'ZANFERMO', 'ZEN',
     'ZENOBIO', 'ZINELLI', 'ZOLIO', 'ZOLIO', 'ZON', 'ZUCCATO', 'Zamparo', 'Zampiceli', 'Zanbelli',
     'Zechinato', 'Zon', 'Zuanne'
     'Castelli','Catani','Cavazza','Ceponi','Cera','Cerotti','Chiaraba','Chichisiola','Chimotto',
     'Chioelolo','Cisi','Ciuran','Civran','Clario','Clementi','Clementi','Coen','PORTO','Porto',
-    'Colombo','Combi','Comello','Comina','Contarini','Contarini','Conti','Contin','Cornelio','Corner',
+    'Colombo','Combi','Comello','Comina','Contarini','Conti','Contin','Cornelio','Corner',
     'Cornioli', 'Correggio','Correr','Corticelli','Cossovik','Costantin','Costantini','Cressini',
     "D'ALEZE","D'Altin",'DABEMI','DALEZE','DAMEZZO','DARDI','DARIGO','DARIN','DATORTA','DELASIA',
     'DELOTTO','DENTE','DEPORTES','DESANDOVIK','DESERPOS','DIAMANTINI','DIEDO','DOLCE',"DONA'",
@@ -319,6 +321,7 @@ listDeFamille = [
 
 listDeFamilleLower = [x.lower() for x in listDeFamille]
 setFamille = sorted(set(listDeFamilleLower))
+print('setfamille : ', len(setFamille))
 
 with open(s2_setPrenoms, "w") as f:
     json.dump(setPrenoms, f)

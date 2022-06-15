@@ -14,14 +14,12 @@ figures_folder = j(relative_path_to_root, "report", "figures")
 
 s0_folder = j(data_folder, "s0_list_of_terms")
 s0_raw_sommarioni = j(s0_folder, "sommarioni.json")
-s0_list_of_terms = j(s0_folder, "listOfTerms.json")
-s0_list_of_tronques = j(s0_folder, "listOfTronques.json")
-s0_terms_only = j(s0_folder, "termsOnly.json")
-s0_tronquesRaw = j(s0_folder, "tronquesRaw.json")
-s0_list_plus_parcelles = j(s0_folder, "listOfTronqPlusParcelles.json")
+s0_list_of_terms = j(s0_folder, "terms.json")
+s0_owners_texts = j(s0_folder, "ownersTexts.json")
+s0_texts_plus_parcels = j(s0_folder, "textsPlusParcels.json")
+s0_bigrams = j(s0_folder, "bigrams.json")
 
 s1_folder = j(data_folder, "s1_regex")
-s1_bigrams = j(s1_folder, "s1_bigrams.json")
 
 s2_folder = j(data_folder, "s2_list_de_proprietaires")
 s2_setPrenoms = j(s2_folder,"setPrenoms.json")

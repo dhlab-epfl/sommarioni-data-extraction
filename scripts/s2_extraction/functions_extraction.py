@@ -22,6 +22,29 @@ import classes as c
 #from sys import from_countedTronqued_listByTypes
 
 
+
+#%%
+"""
+les sets utilisés pour l'extraction
+"""
+with open(s2_setFamilles, encoding="utf-8") as f:
+    setFamille = json.load(f)
+
+with open(s2_setPrenoms,encoding="utf-8") as f:
+    setPrenoms = json.load(f)
+
+listDeTitre = ['commisaria','sacerdote','primo','secondo']
+setTitre = sorted(set(listDeTitre))
+
+listDeMembre = ['fratelli','fratello','nipote','nipoti','sorelle','sorella','eredi','consorti','vedova','famiglia','figlio','figli','fillio','compagni','conorti']
+setMembre = sorted(set(listDeMembre))
+
+listFaconDecrireQuondam = ['quondam','q.','q.m.','q.m']
+setQuondam = sorted(set(listFaconDecrireQuondam))
+
+"""
+Set des inclassable, pas encore utilisé mais peut servir à l'avenir
+"""
 setSpecial = [['cimiterio'],['sottoportico', 'pubblico', "dell'angelo"],
     ['scola', 'maggiore'],['scola', 'maggior'],['compagnia', 'dei', 'mercanti'],
     ['possessori', 'ignoti'],['scuola', 'italiana'],['scuola', 'mensulamin'],
@@ -30,26 +53,19 @@ setSpecial = [['cimiterio'],['sottoportico', 'pubblico', "dell'angelo"],
 
 
 #%%
-with open(s2_setFamilles, encoding="utf-8") as f:
-    setFamille = json.load(f)
-
-with open(s2_setPrenoms,encoding="utf-8") as f:
-    setPrenoms = json.load(f)
-
-listdeTitre = ['commisaria','sacerdote','primo','secondo']
-listDeTitreLower = [x.lower() for x in listdeTitre]
-setTitre = sorted(set(listDeTitreLower))
-
-listdeMembre = ['fratelli','fratello','nipote','nipoti','sorelle','sorella','eredi','consorti','vedova','famiglia','figlio','figli','fillio','compagni','conorti']
-listDeMembreLower = [x.lower() for x in listdeMembre]
-setMembre = sorted(set(listDeMembreLower))
-
-listDeVille = []
-listFaconDecrireQuondam = ['quondam','q.','q.m.','q.m']
-setQuondam = sorted(set(listFaconDecrireQuondam))
-
-#%%
 def decoupe_corresp(tableau, taille, decoupe):
+    """
+    Vérifie si une entrée correspond à un format de taille i
+    
+    paramètres :
+        tableau (liste de sets) : les sets auquels doivent appartenir les mots de l'entrée pour correspondre au format
+        taille : taille de la liste à comparer
+        decoupe : l'entrée découpée en mots
+
+    retourne : True si l'entrée correspond au format 
+    
+    """
+    if len(decoupe) != taille : return False
     for i in range(taille):
         if decoupe[i] not in tableau[i]:
             return False
@@ -57,8 +73,18 @@ def decoupe_corresp(tableau, taille, decoupe):
 
 # %%
 def ajouterLien(persA, persB, typeDeLien):
-        persA.lien.append((persB, typeDeLien))
-        persB.lien.append((persA, typeDeLien))
+    """
+    Ajoute un lieu entre deux personnes
+
+    paramètre :
+        persA (Personne) : une personne auquel on ajoute le lien
+        persB (Personne) : l'autre personne auquel on ajoute le lien
+        typeDeLien (String) : Le lien qu'on veut ajouter
+
+    Ne retourne rien
+    """
+    persA.lien.append((persB, typeDeLien))
+    persB.lien.append((persA, typeDeLien))
 
 
 #%%
@@ -67,14 +93,23 @@ def ajouterLien(persA, persB, typeDeLien):
 
 
 def gestion_nom_seul(nomSeul, aff_result=False):
+    """
+    Reconnait des formats dans la liste des noms Seuls et crée des personnes le cas échéant, ainsi que les parcelles correspondantes,
+        crée aussi les liens entre personnes et entre les propriétaires et leurs parcelles  
+    
+    paramètres :
+        nomSeul ( [list de String, liste de liste d'integer] ) : la liste des entrées appartenant à la catégorie nomSeul,
+            chacune associée aux parcelles qu'elle possède (se situent au même index dans les deux listes principales)
+        aff_result (booléen) : si True, les statistiques d'extraction sont affichées
+
+    Retourne :
+        listdePersonne (liste de Personne) : les personne créées 
+        listdeParcelle (list de Parcelles): les parcelles classées (donc créées en tant qu'objet)  
+        pasEncoreClasse ( [list de String, liste de liste d'integer] ) : les propriétaires pas encore identifiés et leurs parcelles
+    """
     listdePersonne = []
     listdeParcelle = []
 
-    nomProprio1 = []
-    nomProprio2 = []
-    nomProprio3 = []
-    nomProprio4 = []
-    erediDelFu = []
     pasEncoreClasse = []
     nbParcNonClass = 0
 
@@ -218,7 +253,6 @@ def gestion_nom_seul(nomSeul, aff_result=False):
                 pasEncoreClasse.append(decoupe)
                 nbParcNonClass += len(parcelles)
         else:
-            erediDelFu.append(decoupe)
             pasEncoreClasse.append(decoupe)
             nbParcNonClass += len(parcelles)
     if aff_result:
@@ -233,14 +267,23 @@ def gestion_nom_seul(nomSeul, aff_result=False):
 #%%
 #gestion des nom avec quondam
 def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
+    """
+    Reconnait des formats dans la liste des noms avec quondam et crée des personnes le cas échéant, ainsi que les parcelles correspondantes,
+        crée aussi les liens entre personnes et entre les propriétaires et leurs parcelles  
+    
+    paramètres :
+        nomSeul ( [list de String, liste de liste d'integer] ) : la liste des entrées appartenant à la catégorie nomEtQuondam,
+            chacune associée aux parcelles qu'elle possède (se situent au même index dans les deux listes principales)
+        aff_result (booléen) : si True, les statistiques d'extraction sont affichées
+
+    Retourne :
+        listdePersonne (liste de Personne) : les personne créées 
+        listdeParcelle (list de Parcelles): les parcelles classées (donc créées en tant qu'objet)  
+        pasEncoreClasse ( [list de String, liste de liste d'integer] ) : les propriétaires pas encore identifiés et leurs parcelles
+    """
+
     listdePersonne = []
     listdeParcelle = []
-
-    nomProprio1 = []
-    nomProprio2 = []
-    nomProprio3 = []
-    nomProprio4 = []
-    erediDelFu = []
     pasEncoreClasse = []
     nbParcNonClass = 0
 
@@ -475,14 +518,23 @@ def gestion_avec_quondam(nomAvecQuondam, aff_result=False):
 #%%
 #gestion des nom avec membre de la famille
 def gestion_avec_famille(nomAvecFamille, aff_result=False):
+    """
+    Reconnait des formats dans la liste des noms avec famille et crée des personnes le cas échéant, ainsi que les parcelles correspondantes,
+        crée aussi les liens entre personnes et entre les propriétaires et leurs parcelles  
+    
+    paramètres :
+        nomSeul ( [list de String, liste de liste d'integer] ) : la liste des entrées appartenant à la catégorie nomAvecFamille,
+            chacune associée aux parcelles qu'elle possède (se situent au même index dans les deux listes principales)
+        aff_result (booléen) : si True, les statistiques d'extraction sont affichées
+
+    Retourne :
+        listdePersonne (liste de Personne) : les personne créées 
+        listdeParcelle (list de Parcelles): les parcelles classées (donc créées en tant qu'objet)  
+        pasEncoreClasse ( [list de String, liste de liste d'integer] ) : les propriétaires pas encore identifiés et leurs parcelles
+    """
+
     listdePersonne = []
     listdeParcelle = []
-
-    nomProprio1 = []
-    nomProprio2 = []
-    nomProprio3 = []
-    nomProprio4 = []
-    erediDelFu = []
     pasEncoreClasse = []
     nbParcNonClass = 0
 
@@ -718,23 +770,13 @@ def gestion_avec_famille(nomAvecFamille, aff_result=False):
 
     return listdePersonne, listdeParcelle, pasEncoreClasse
 
-    
-#%%    
-def gestion_chiesa(nomEglise, aff_result=False):
-#gestion des eglises
-    listdEglises = []
-    listdeParcelle = []
-    listdePretres = []
-    pasEncoreClasse = []
-
-
-    #parcours tous les noms avec une eglise
-    for i in range(len(nomEglise)):
-        a=1
-
 
 # %%
-#gestion des prop. public
+"""
+Les fonctions suivantes sont des ébauches de gestion des catégories Venezia et Demanio
+"""
+
+
 def gestion_venezia(nomVenezia, aff_result=False):
     listPublic = []
     listdeParcelle = []
@@ -798,20 +840,4 @@ def gestion_demanio(nomDemanio, aff_result=False):
 
     return listPublic, listdeParcelle, pasEncoreClasse
 
-
-
-#%%
-def from_listByType_to_proprio(listByType_plusNumber):
-    gestion_nom_seul(listByType_plusNumber[0][1])
-    gestion_avec_quondam(listByType_plusNumber[1][1])
-    gestion_avec_famille(listByType_plusNumber[2][1])
-    gestion_chiesa(listByType_plusNumber[3][1])
-    gestion_venezia(listByType_plusNumber[4][1])
-    gestion_demanio(listByType_plusNumber[5][1])
-
 # %%
-"""
-https://stackoverflow.com/questions/46408051/python-json-load-set-encoding-to-utf-8
-with open('keys.json', encoding='utf-8') as fh:
-    data = json.load(fh)
-"""

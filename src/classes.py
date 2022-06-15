@@ -3,8 +3,51 @@
 
 #une personne simple
 class Personne:
+    """
+    Cette classe représente une personne, ou un famille si membreFamille est non-nul
+
+    Attributs :
+    prenom1 (string) : le premier prenom
+    prenom2 (string) : deuxième prénom si prénom composé
+    nom1 (string) : premier nom de famille
+    nom2 (string): second nom de famille éventuel
+    membreFamille (string) : relation qui unie le groupe
+    di (string) : mot qui vient aprés le "di"
+    titre (string) : ce qui définit autre que les attributs précédents
+
+    parcSeul (liste d'integer) : id des parcelles que la personne possède seul
+    parcQuond (liste d'integer) : id des parcelles possédées et où le quondam est precisé
+    parcFamille (liste d'integer) : id des parcelles possédées avec sa famille
+    ParcAutres (liste d'integer) : id des parcelles possédée avec des inconnus
+
+    isAQuondam (booléen) : si la personne est le 'quondam' et non le propriétaire
+    isMorto (booléen) : si la personne est morte
+
+    lien (liste de (Personne, String)) : les personnes avec qui elle a un lien et le nom du lien 
+        (ex: (objet de 'GUERRA Stefano',fratello))
+    """
     def __init__(self,nm1,pr1=None,pr2=None,nm2=None,di=None,mf=None,titre=None,
             ps=None,pq=None,pf=None,pa = None,pi=None,isqd=False, isMor=False):
+        """
+        Paramètres :
+        nm1 (string) : premier nom de famille
+        pr1 (string) : le premier prenom
+        pr2 (string) : deuxième prénom si prénom composé
+        nm2 (string): second nom de famille éventuel
+        mf (string) : relation qui unie le groupe
+        di (string) : mot qui vient aprés le "di"
+        titre (string) : ce qui définit autre que les attributs précédents
+
+        ps (liste d'integer) : id des parcelles que la personne possède seul
+        pq (liste d'integer) : id des parcelles possédées et où le quondam est precisé
+        pf (liste d'integer) : id des parcelles possédées avec sa famille
+        pa (liste d'integer) : id des parcelles possédée avec des inconnus
+
+        isqd (booléen) : si la personne est le 'quondam' et non le propriétaire
+        isMor (booléen) : si la personne est morte
+
+        """
+        
         self.prenom1 = pr1
         self.prenom2 = pr2
         
@@ -20,25 +63,38 @@ class Personne:
         self.parcAutre = pa
         self.parIndivi = pi
 
-        self.isAquondam = isqd
+        self.isQuondam = isqd
         self.isMorto = isMor
         self.lien = []
 
-    def __eq__(self, other):
-        self.prenom1 == other.prenom1
-        self.prenom2 == other.prenom2
-        self.nom1 == other.nom1
-        self.nom2 == other.nom2
-        self.di == other.di
-        self.isAquondam == other.isAquondam
-
     def __str__(self):
+        """
+        affiche le nom et prénom de la personne
+        """
         return 'Nom : ' + self.nom1 + ' Prenom : ' + self.prenom1
 
-    def get_all_parcelles():
-        pass
+class Parcelle:
+    """
+    Représente une parcelles ou une sous-parcelle
+    
+    Attributs : 
+    number (int) : id de la parcelle ou sous-parcelle
+    owner (Personne) : son/sa propriétaire 
+    """
+    def __init__(self,number, owner):
+        """
+        paramètres :
+        number (int) : id de la parcelle ou sous-parcelle
+        owner (Personne) : son/sa propriétaire
+        """
+        self.number = number
+        self.owner = owner
 
-#eglise 
+
+
+"""
+classe pouvant être complétée dans un travail futur
+""" 
 class Chiesa:
     def __init__(self,nom,parcelles,entite=None):
         self.nom = nom
@@ -46,7 +102,6 @@ class Chiesa:
         self.entite = entite
         self.lien = []
 
-#pretre qui a un benefizio/goduto
 class Pretre:
     def __init__(self,nom,parcelles):
         self.nom = nom
@@ -57,10 +112,7 @@ class Public:
     def __init__(self,nom,parcelles,prov=None):
         self.nom = nom
         self.parcelles = parcelles
-        self.prov = prov
+        self.provenienza = prov
 
-class Parcelle:
-    def __init__(self,number, owner):
-        self.number = number
-        self.owner = owner
+
 # %%
