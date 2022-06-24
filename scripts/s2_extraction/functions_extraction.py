@@ -8,10 +8,6 @@ import spacy
 import sys
 sys.path.append("../../src")
 sys.path.append("../../scripts")
-sys.path.append("../../scripts/s0_list_of_terms")
-
-from data_filepaths import s0_raw_sommarioni
-from data_filepaths import s0_scripts
 
 from data_filepaths import s2_setPrenoms
 from data_filepaths import s2_setFamilles

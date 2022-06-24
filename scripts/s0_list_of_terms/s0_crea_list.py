@@ -7,7 +7,6 @@ import sys
 
 sys.path.append("../../src")
 sys.path.append("../../scripts")
-sys.path.append("../../scripts/s0_list_of_terms")
 
 from data_filepaths import s0_raw_sommarioni
 from data_filepaths import s0_list_of_terms
@@ -41,11 +40,3 @@ list_plus_parcelles = from_sommarioni_to_texts_plus_parcelNumber(sommarioni)
 list_plus_parcelles_json = json.dumps(list_plus_parcelles)
 with open(s0_texts_plus_parcels, "w") as w:
     w.write(list_plus_parcelles_json)
-
-#%%
-bigrams = from_sommarioni_to_bigrams(sommarioni)
-
-birgrams_json = json.dumps(bigrams)
-with open(s0_bigrams, "w") as w:
-    w.write(birgrams_json)
-# %%

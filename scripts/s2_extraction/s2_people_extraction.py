@@ -7,7 +7,6 @@ import sys
 #from scripts.s2_list_de_proprietaires.s2_listDesPersonnes import gestion_nom_seul
 sys.path.append("../../src")
 sys.path.append("../../scripts")
-sys.path.append("../../scripts/s0_list_of_terms")
 
 
 from s0_list_of_terms.function_lists import from_sommarioni_to_texts_plus_parcelNumber

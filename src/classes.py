@@ -57,11 +57,11 @@ class Personne:
         self.di = di
         self.titre = titre
 
-        self.parcSeul = ps
-        self.parcQuond = pq
-        self.parcFamille = pf
-        self.parcAutre = pa
-        self.parIndivi = pi
+        self.parcSeul = ps if ps is not None else []
+        self.parcQuond = pq if pq is not None else []
+        self.parcFamille = pf if pf is not None else []
+        self.parcAutre = pa if pa is not None else []
+        self.parIndivi = pi if pi is not None else []
 
         self.isQuondam = isqd
         self.isMorto = isMor
@@ -71,7 +71,10 @@ class Personne:
         """
         affiche le nom et prénom de la personne
         """
-        return 'Nom : ' + self.nom1 + ' Prenom : ' + self.prenom1
+        return 'Personne(nom: '+ self.nom1 + ', prenom: ' + self.prenom1+", parcelles: "+ \
+            str(self.parcSeul+ self.parcQuond+ self.parcFamille+ self.parcAutre+ self.parIndivi)+")"
+    def __repr__(self):
+        return self.__str__()
 
 class Parcelle:
     """
@@ -89,6 +92,10 @@ class Parcelle:
         """
         self.number = number
         self.owner = owner
+    def __str__(self):
+        return f"Parcelle({self.number}, owner={self.owner})"
+    def __repr__(self):
+        return self.__str__()
 
 
 
